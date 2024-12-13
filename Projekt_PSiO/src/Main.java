@@ -47,8 +47,6 @@ public class Main {
             System.out.print("Wybierz opcję: ");
             int wybor = input.nextInt();
 
-
-
             switch (wybor) {
                 case 1:
                     dodajPrzykladoweTransakcje();
