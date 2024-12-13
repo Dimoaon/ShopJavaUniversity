@@ -67,7 +67,7 @@ public class Main {
                     zapiszTransakcjeStudentow();
                     break;
                 case 7:
-                    System.out.println("Koniec prdgfgfddgfjjjgdfogramu.");
+                    System.out.println("Koniec programu.");
                     scanner.close();
                     return;
                 case 8:
