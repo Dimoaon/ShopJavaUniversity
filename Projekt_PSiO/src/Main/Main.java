@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
 
         while (true) {
             System.out.println("  ______   __    __  __        ________  _______                                          \n" +
@@ -33,7 +32,6 @@ public class Main {
                     "                                                                                          \n" +
                     "                                                                                          \n" +
                     "                                                                                          ");
-
             System.out.println("\nMenu logowania do sklepu");
             System.out.println("1. Zaloguj sie (klient).");
             System.out.println("2. Zaloguj sie (sprzedawca).");
@@ -49,33 +47,38 @@ public class Main {
 
             switch (wybor) {
                 case 1:
-                    dodajPrzykladoweTransakcje();
+
                     break;
+
                 case 2:
-                    wyswietlTransakcje();
+
                     break;
+
                 case 3:
-                    dodajTransakcje(scanner);
+
                     break;
+
                 case 4:
-                    policzTransakcjeSeniora();
+
                     break;
+
                 case 5:
-                    znajdzNajdrozszegoStudenta();
+
                     break;
+
                 case 6:
-                    zapiszTransakcjeStudentow();
+
                     break;
+
                 case 7:
-                    System.out.println("Koniec programu.");
-                    scanner.close();
+
                     return;
+
                 case 8:
                     exit();
-                    return;
-                default:
-                    System.out.println("Nieprawidłowy wybór!");
 
+                default:
+                    System.out.println("Wybrano złą opcję. Spróbuj ponownie");
 
 
             }
