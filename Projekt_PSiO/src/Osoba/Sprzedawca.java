@@ -30,7 +30,7 @@ public class Sprzedawca extends Osoba {
     }
 
     public String toString() {
-        return "Sprzedawca{+++++++" +
+        return "Sprzedawca" +
                 "sredniaOcena=" + sredniaOcena +
                 ", dataZalozeniaKonta='" + dataZalozeniaKonta + '\'' +
                 '}';
