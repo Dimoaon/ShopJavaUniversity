@@ -66,9 +66,12 @@ public class Main {
                 case 6:
                     zapiszTransakcjeStudentow();
                     break;
-                case 0:
+                case 7:
                     System.out.println("Koniec programu.");
                     scanner.close();
+                    return;
+                case 8:
+                    exit();
                     return;
                 default:
                     System.out.println("Nieprawidłowy wybór!");
