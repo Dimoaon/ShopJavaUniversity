@@ -35,18 +35,49 @@ public class Main {
                     "                                                                                          ");
 
             System.out.println("\nMenu logowania do sklepu");
-            System.out.println("1. Dodaj transakcje");
-            System.out.println("2. Wyświetl transakcje");
-            System.out.println("3. Dodaj pojedynczą transakcję");
-            System.out.println("4. Policz transakcje z Kartą Seniora");
-            System.out.println("5. Znajdź klienta ze Studencką Kartą z najwyższą transakcją");
-            System.out.println("6. Zapisz transakcje studentów do pliku");
-            System.out.println("0. Wyjście");
+            System.out.println("1. Zaloguj sie (klient).");
+            System.out.println("2. Zaloguj sie (sprzedawca).");
+            System.out.println("3. Zaloguj sie (pracownik).");
+            System.out.println("4. Przeglądaj produkty.");
+            System.out.println("5. Wyszukaj dany produkt.");
+            System.out.println("6. Wyszukaj danego sprzedawcę.");
+            System.out.println("7. Wyswietl wszystkich uzytkownikow sklepu.");
+            System.out.println("8. Wyjscie ze sklepu\n");
 
             System.out.print("Wybierz opcję: ");
             int wybor = input.nextInt();
 
-        }
+
+
+            switch (wybor) {
+                case 1:
+                    dodajPrzykladoweTransakcje();
+                    break;
+                case 2:
+                    wyswietlTransakcje();
+                    break;
+                case 3:
+                    dodajTransakcje(scanner);
+                    break;
+                case 4:
+                    policzTransakcjeSeniora();
+                    break;
+                case 5:
+                    znajdzNajdrozszegoStudenta();
+                    break;
+                case 6:
+                    zapiszTransakcjeStudentow();
+                    break;
+                case 0:
+                    System.out.println("Koniec programu.");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Nieprawidłowy wybór!");
+
+
+
+            }
     }
 }
 
