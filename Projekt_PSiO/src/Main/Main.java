@@ -32,7 +32,7 @@ public class Main {
                     "                                                                                          \n" +
                     "                                                                                          \n" +
                     "                                                                                          ");
-            System.out.println("\nMenu logowania do sklepu");
+            System.out.println("\nMenu logowania do sklepu lmaooo");
             System.out.println("1. Zaloguj sie (klient).");
             System.out.println("2. Zaloguj sie (sprzedawca).");
             System.out.println("3. Zaloguj sie (pracownik).");
