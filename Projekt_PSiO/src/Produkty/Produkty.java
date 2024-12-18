@@ -1,13 +1,18 @@
 package Produkty;
 
 public abstract class Produkty{
-	
+
+	private static int id=1;
+
+	int idProduktu;
 	String nazwaProduktu;
 	float cenaProduktu;
 	int liczbaProduktu;
 	String opisProduktu;
 	
 	public Produkty(String nazwaProduktu, float cenaProduktu, int liczbaProduktu, String opisProduktu) {
+		id++;
+		this.nazwaProduktu=id;
 		this.nazwaProduktu = nazwaProduktu;
 		this.cenaProduktu = cenaProduktu;
 		this.liczbaProduktu = liczbaProduktu;

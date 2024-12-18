@@ -34,59 +34,48 @@ public abstract class Osoba {
 		return NazwiskoImie;
 	}
 	
-	
 	public void setNaziwskoImie(String NazwiskoImie) {
 		this.NazwiskoImie = NazwiskoImie;
 	}
+
 	public int getWiek() {
 		return wiek;
 	}
-	
-	
+
 	public void setWiek(int wiek) {
 		this.wiek = wiek;
 	}
-	
-	
+
 	public String getEmail() {
 		return email;
 	}
-	
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
 	public double getSaldoKonta() {
 		return saldoKonta;
 	}
-	
-	
+
 	public void setSaldoKonta(double saldoKonta) {
 		this.saldoKonta = saldoKonta;
 	}
-
 
 	public String getHaslo() {
 		return haslo;
 	}
 
-
 	public void setHaslo(String haslo) {
 		this.haslo = haslo;
 	}
-
 
 	public Adres[] getAdres() {
 		return adres;
 	}
 
-
 	public void setAdres(Adres[] adres) {
 		this.adres = adres;
 	}
-	
-	
 
 }
