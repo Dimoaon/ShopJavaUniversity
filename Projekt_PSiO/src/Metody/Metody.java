@@ -4,7 +4,7 @@ import Osoby.*;
 import Produkty.*;
 import Arraylist;
 
-public class MetodyPolaStatycznego{
+public class Metody{
 
     public static ArrayList<Klient> listaKlientow = new ArrayList<>();
     public static ArrayList<Pracownik> listaSprzedawcow = new ArrayList<>();
