@@ -4,11 +4,11 @@ public abstract class Produkty{
 
 	private static int id=1;
 
-	int idProduktu;
-	String nazwaProduktu;
-	float cenaProduktu;
-	int liczbaProduktu;
-	String opisProduktu;
+	private int idProduktu;
+	private String nazwaProduktu;
+	private float cenaProduktu;
+	private int liczbaProduktu;
+	private String opisProduktu;
 	
 	public Produkty(String nazwaProduktu, float cenaProduktu, int liczbaProduktu, String opisProduktu) {
 		id++;
@@ -18,7 +18,15 @@ public abstract class Produkty{
 		this.liczbaProduktu = liczbaProduktu;
 		this.opisProduktu = opisProduktu;
 	}
-	
+
+	public int getIdProduktu() {
+		return idProduktu;
+	}
+
+	public void setIdProduktu(int idProduktu) {
+		this.idProduktu = idProduktu;
+	}
+
 	public String getNazwaProduktu() {
 		return nazwaProduktu;
 	}
@@ -46,8 +54,8 @@ public abstract class Produkty{
 
 
 	public String toString() {
-		return "Produkty [nazwaProduktu=" + nazwaProduktu + ", cenaProduktu=" + cenaProduktu + ", liczbaProduktu="
-				+ liczbaProduktu + ", opisProduktu=" + opisProduktu;
+		return "Id: " + getIdProduktu() + "Produkty [nazwaProduktu=" + getNazwaProduktu() + ", cenaProduktu=" + getCenaProduktu() + ", liczbaProduktu="
+				+ getLiczbaProduktu() + ", opisProduktu=" + getOpisProduktu();
 	}
 	
 	

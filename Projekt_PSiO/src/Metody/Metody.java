@@ -11,6 +11,20 @@ public class MetodyPolaStatycznego{
     public static ArrayList<Kierownik> listaKierownikow = new ArrayList<>();
     public static ArrayList<T> listaProduktow = new ArrayList<T>();
 
+    public static void wczytaj() {
+        wczytajKlientow();
+        wczytajPracownikow();
+        wczytajKierownikow();
+        wczytajProdukty();
+    }
+
+    public static void zapisz() {
+        zapiszKlientow();
+        zapiszPracownikow();
+        zapiszKierownikow();
+        zapiszProdukty();
+    }
+
     public static void wczytajKlientow() {
         try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("BazaDanych/klienci.txt"))) {
             Object obj1 = is.readObject();
@@ -73,6 +87,83 @@ public class MetodyPolaStatycznego{
             e.printStackTrace();
         }
     }
+
+
+    public static void zapiszKlientow() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("BazaDanych/klienci.txt")))
+        {
+           for (Klient klient : listaKlientow)
+           {
+                writer.write(klient.getLogin() + "," + klient.getEmail() + "," + klient.getHaslo() + "," + klient.getSaldo());
+                writer.newLine();
+            }
+        }
+        catch (IOException e)
+        {
+             e.printStackTrace();
+       }
+    }
+
+    public static void zapiszPracownikow() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("BazaDanych/pracownicy.txt"))) {
+            for (Pracownik pracownik : listaPracowikow) {
+                writer.write(pracownik.getLogin() + "," + pracownik.getEmail() + "," + pracownik.getHaslo());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public static void zapiszKierownikow() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("BazaDanych/kierownicy.txt"))) {
+            for (Kierownik kierownik : listaKierownikow) {
+                writer.write(kierownik.getLogin() + "," + kierownik.getEmail() + "," + kierownik.getHaslo());
+                writer.newLine();
+        }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void zapiszProdukty() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("BazaDanych/produkty.txt"))) {
+            for (Produkt produkt : listaProduktow) {
+                writer.write("Kategoria: " + produkt.getInstance() + "," + produkt.nazwaProduktu + "," + produkt.cena + "," + produkt.opis + "," + produkt.liczbaProduktu);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void dodajProdukt() {
+    }
+
+    public static void usunProdukt() {
+    }
+
+    public static void wystwietlProdukty() {
+        for (Produkt produkt : listaProduktow) {
+            System.out.println(produkt);
+        }
+    }
+
+    public static void usunKlienta() {
+    }
+
+    public static void wystwietlKlientow() {
+        for (Klient klient : listaKlientow) {
+            System.out.println(klient);
+        }
+    }
+}
+
+
+
 
 
 

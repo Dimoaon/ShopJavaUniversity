@@ -1,14 +1,13 @@
 package Osoba;
 
-import java.util.Arrays;
-
 import Adres.Adres;
 
 public class Klient extends Osoba{
 	
-	String promocjeKlienta;
-	String[] historiaZakupow;
-	String ranga;
+	private String promocjeKlienta;
+	private String[] historiaZakupow;
+	private String ranga;
+	//ranga Nowy, Średniozaawansowany, Stały
 
 	public Klient(String imieNazwisko, int wiek, Adres adres, String email, double saldoKonta,String promocjeKlienta,String[] historiaZakupow, String ranga) {
 		super(imieNazwisko, wiek, adres, email, saldoKonta);
