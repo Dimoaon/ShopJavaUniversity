@@ -15,11 +15,29 @@ public class Klient extends Osoba{
 		this.historiaZakupow=historiaZakupow;
 	}
 
-	@Override
+
+	public String getPromocjeKlienta() {
+		return promocjeKlienta;
+	}
+
+	public void setPromocjeKlienta(String promocjeKlienta) {
+		this.promocjeKlienta = promocjeKlienta;
+	}
+
+	public String[] getHistoriaZakupow() {
+		return historiaZakupow;
+	}
+
+	public void setHistoriaZakupow(String[] historiaZakupow) {
+		this.historiaZakupow = historiaZakupow;
+	}
+	
+	
 	public String toString() {
-		return "Klient [promocjeKlienta=" + promocjeKlienta + ", historiaZakupow=" + Arrays.toString(historiaZakupow)
+		return "Klient [promocjeKlienta=" + getPromocjeKlienta() + ", historiaZakupow=" + Arrays.toString(historiaZakupow)
 				+ "]";
 	}
+
 	
 
 }
