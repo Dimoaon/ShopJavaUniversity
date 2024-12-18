@@ -3,14 +3,17 @@ package Osoba;
 import Adres.Adres;
 
 public abstract class Osoba {
-	private String imieNazwisko;
-	private int wiek;
-	private Adres adres;
 	private String email;
+	private String haslo;
+	
+	private String NazwiskoImie;
+	private int wiek;
+	private Adres[] adres;
+
 	private double saldoKonta;
 	
-	public Osoba(String imieNazwisko,int wiek,Adres adres,String email,double saldoKonta) {
-		this.imieNazwisko=imieNazwisko;
+	public Osoba(String imieNazwisko,int wiek,Adres[] adres,String email,double saldoKonta) {
+		this.NazwiskoImie=imieNazwisko;
 		this.wiek=wiek;
 		this.adres=adres;
 		this.email=email;
@@ -19,8 +22,8 @@ public abstract class Osoba {
 	
 	
 	public String toString() {
-		return "Klient: Nazwisko: " + imieNazwisko +
-				" adres: "+adres +
+		return "Klient: Nazwisko: " + NazwiskoImie +
+				" adres: "+ String.join("; ", adres) +
 				" email: " + email +
 				" wiek: " + wiek +
 				" saldo konta : " + saldoKonta;
@@ -28,12 +31,12 @@ public abstract class Osoba {
 	
 	
 	public String getImieNazwisko() {
-		return imieNazwisko;
+		return NazwiskoImie;
 	}
 	
 	
-	public void setImieNazwisko(String imieNazwisko) {
-		this.imieNazwisko = imieNazwisko;
+	public void setNaziwskoImie(String NazwiskoImie) {
+		this.NazwiskoImie = NazwiskoImie;
 	}
 	public int getWiek() {
 		return wiek;
@@ -63,5 +66,27 @@ public abstract class Osoba {
 	public void setSaldoKonta(double saldoKonta) {
 		this.saldoKonta = saldoKonta;
 	}
+
+
+	public String getHaslo() {
+		return haslo;
+	}
+
+
+	public void setHaslo(String haslo) {
+		this.haslo = haslo;
+	}
+
+
+	public Adres[] getAdres() {
+		return adres;
+	}
+
+
+	public void setAdres(Adres[] adres) {
+		this.adres = adres;
+	}
+	
+	
 
 }
