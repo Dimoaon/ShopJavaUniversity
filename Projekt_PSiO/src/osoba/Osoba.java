@@ -1,29 +1,35 @@
-package Osoba;
+package osoba;
 
-import Adres.Adres;
+import adres.Adres;
 
 public abstract class Osoba {
 	private String email;
 	private String haslo;
-	
+	private String login;
 	private String NazwiskoImie;
 	private int wiek;
 	private Adres[] adres;
 
 	private double saldoKonta;
 	
-	public Osoba(String imieNazwisko,int wiek,Adres[] adres,String email,double saldoKonta) {
-		this.NazwiskoImie=imieNazwisko;
-		this.wiek=wiek;
-		this.adres=adres;
-		this.email=email;
-		this.saldoKonta=saldoKonta;
+	
+	
+	
+	public Osoba(String email, String haslo, String login, String nazwiskoImie, int wiek, Adres[] adres,
+			double saldoKonta) {
+		this.email = email;
+		this.haslo = haslo;
+		this.login = login;
+		NazwiskoImie = nazwiskoImie;
+		this.wiek = wiek;
+		this.adres = adres;
+		this.saldoKonta = saldoKonta;
 	}
-	
-	
+
+
 	public String toString() {
 		return "Klient: Nazwisko: " + NazwiskoImie +
-				" adres: "+ String.join("; ", adres) +
+				" adres: "+ adres +
 				" email: " + email +
 				" wiek: " + wiek +
 				" saldo konta : " + saldoKonta;
@@ -76,6 +82,16 @@ public abstract class Osoba {
 
 	public void setAdres(Adres[] adres) {
 		this.adres = adres;
+	}
+
+
+	public String getLogin() {
+		return login;
+	}
+
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 }

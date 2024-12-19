@@ -1,43 +1,43 @@
-package Osoba;
+package osoba;
 
-import Adres.Adres;
+import adres.Adres;
 
-public class OsobaZarzadzajaca extends Osoba{
+public abstract class OsobaZarzadzajaca extends Osoba {
 
-    private String pesel;
-    private float ocena;
-
-
-    public OsobaZarzadzajaca(String imieNazwisko,int wiek,Adres[] adres,String email, String pesel, float ocena) {
-        super(String imieNazwisko,int wiek,Adres[] adres,String email,String pesel, float ocena)
-        this.pesel = pesel;
-        this.ocena = ocena;
-    }
+	private String pesel;
+	private float ocena;
 
 
 
-    public String getPesel() {
-        return pesel;
-    }
+	public OsobaZarzadzajaca(String email, String haslo, String login, String nazwiskoImie, int wiek, Adres[] adres,
+			double saldoKonta, String pesel, float ocena) {
+		super(email, haslo, login, nazwiskoImie, wiek, adres, saldoKonta);
+		this.pesel = pesel;
+		this.ocena = ocena;
+	}
 
-    public float getOcena() {
-        return ocena;
-    }
+	public String getPesel() {
+		return pesel;
+	}
 
-    public void setPesel(String pesel) {
-        this.pesel = pesel;
-    }
+	public float getOcena() {
+		return ocena;
+	}
 
-    public void setOcena(float ocena) {
-        this.ocena = ocena;
-    }
+	public void setPesel(String pesel) {
+		this.pesel = pesel;
+	}
 
-    abstract public void wyswietlProdukty()
+	public void setOcena(float ocena) {
+		this.ocena = ocena;
+	}
 
-    abstract public void wyswietlStanProduktu()
+	abstract public void wyswietlProdukty();
 
-    abstract public void wyswietlStanKlienta()
+	abstract public void wyswietlStanProduktu();
 
-    abstract public void wyswietlKlientow()
+	abstract public void wyswietlStanKlienta();
+
+	abstract public void wyswietlKlientow();
 
 }

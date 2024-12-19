@@ -4,6 +4,7 @@ import osoba.*;
 import Produkty.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.*;
 
 public class Metody{
 
@@ -12,47 +13,53 @@ public class Metody{
 	public static Osoba aktywnaOsoba = null;
 	
     public static ArrayList<Klient> listaKlientow = new ArrayList<>();
-    public static ArrayList<Pracownik> listaSprzedawcow = new ArrayList<>();
-    public static ArrayList<Kierownik> listaKierownikow = new ArrayList<>();
-    public static ArrayList<T> listaProduktow = new ArrayList<T>();
+    public static ArrayList<Pracownik> listaPracownikow = new ArrayList<>();
+   // public static ArrayList<Kierownik> listaKierownikow = new ArrayList<>();
+   // public static ArrayList<T> listaProduktow = new ArrayList<T>();
 
     public static void wczytaj() {
         wczytajKlientow();
         wczytajPracownikow();
-        wczytajKierownikow();
-        wczytajProdukty();
+       // wczytajKierownikow();
+       // wczytajProdukty();
     }
 
     public static void zapisz() {
         zapiszKlientow();
         zapiszPracownikow();
-        zapiszKierownikow();
-        zapiszProdukty();
+       // zapiszKierownikow();
+       // zapiszProdukty();
     }
 
     public static void wczytajKlientow() {
         try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("BazaDanych/klienci.txt"))) {
             Object obj1 = is.readObject();
-            kl = (Klient) obj1;
-            listaKlientow.add(kl);
+            Klient klient = (Klient) obj1;
+            listaKlientow.add(klient);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 
     public static void wczytajPracownikow() {
         try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("BazaDanych/pracownicy.txt"))) {
             Object obj1 = is.readObject();
-            pr = (Pracownik) obj1;
-            listaPracownikow.add(pr);
-        }
+            Pracownik pracownik = (Pracownik) obj1;
+            listaPracownikow.add(pracownik);
+        
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
-    public static void wczytajKierownikow() {
+   /* public static void wczytajKierownikow() {
         try (ObjectInputStream is = new ObjectInputStream(new FileInputStream("BazaDanych/kierownicy.txt"))) {
             Object obj1 = is.readObject();
             kier = (Kierownik) obj1;
@@ -61,9 +68,9 @@ public class Metody{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    } */
 
-    public static void wczytajProdukty() {
+  /*  public static void wczytajProdukty() {
         File bazaProdukty = new File("BazaDanych/produkty.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(bazaProdukty))) {
             String linia;
@@ -92,14 +99,14 @@ public class Metody{
             e.printStackTrace();
         }
     }
-
+*/
 
     public static void zapiszKlientow() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("BazaDanych/klienci.txt")))
         {
            for (Klient klient : listaKlientow)
            {
-                writer.write(klient.getLogin() + "," + klient.getEmail() + "," + klient.getHaslo() + "," + klient.getSaldo());
+                writer.write(klient.getLogin() + "," + klient.getEmail() + "," + klient.getHaslo() + "," + klient.getSaldoKonta());
                 writer.newLine();
             }
         }
@@ -111,7 +118,7 @@ public class Metody{
 
     public static void zapiszPracownikow() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("BazaDanych/pracownicy.txt"))) {
-            for (Pracownik pracownik : listaPracowikow) {
+            for (Pracownik pracownik : listaPracownikow) {
                 writer.write(pracownik.getLogin() + "," + pracownik.getEmail() + "," + pracownik.getHaslo());
                 writer.newLine();
             }
@@ -122,7 +129,7 @@ public class Metody{
 
     }
 
-    public static void zapiszKierownikow() {
+   /* public static void zapiszKierownikow() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("BazaDanych/kierownicy.txt"))) {
             for (Kierownik kierownik : listaKierownikow) {
                 writer.write(kierownik.getLogin() + "," + kierownik.getEmail() + "," + kierownik.getHaslo());
@@ -131,9 +138,9 @@ public class Metody{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    } */
 
-    public static void zapiszProdukty() {
+   /* public static void zapiszProdukty() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("BazaDanych/produkty.txt"))) {
             for (Produkt produkt : listaProduktow) {
                 writer.write("Kategoria: " + produkt.getInstance() + "," + produkt.nazwaProduktu + "," + produkt.cena + "," + produkt.opis + "," + produkt.liczbaProduktu);
@@ -142,10 +149,10 @@ public class Metody{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    } */
 
 
-    public static void dodajProdukt() {
+ /*   public static void dodajProdukt() {
     }
 
     public static void usunProdukt() {
@@ -155,7 +162,7 @@ public class Metody{
         for (Produkt produkt : listaProduktow) {
             System.out.println(produkt);
         }
-    }
+    } */
 
     public static void usunKlienta() {
     }
@@ -172,5 +179,3 @@ public class Metody{
 
 
 
-
-}

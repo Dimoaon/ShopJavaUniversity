@@ -30,8 +30,8 @@ public class Logowanie_LoginHaslo implements Logowanie {
 		// Logowanie klienta i sprawdzenie hasła
 		if (idKontaPracownika == -1) {
 
-			if (haslo == Metody.listaKlientow[idKontaKlienta].getHaslo()) {
-				Metody.aktywnaOsoba = Metody.listaKlientow[idKontaKlienta];
+			if (haslo == Metody.listaKlientow.get(idKontaKlienta).getHaslo()) {
+				Metody.aktywnaOsoba = Metody.listaKlientow.get(idKontaKlienta);
 				System.out.println("Załogowałeś się jako " + Metody.aktywnaOsoba.getImieNazwisko());
 			}
 
@@ -44,8 +44,8 @@ public class Logowanie_LoginHaslo implements Logowanie {
 
 		// Logowanie pracownika i sprawdzenie hasła
 		else {
-			if (haslo == Metody.listaPracownikow[idKontaPracownika].getHaslo()) {
-				Metody.aktywnaOsoba = Metody.listaPracownikow[idKontaPracownika];
+			if (haslo == Metody.listaPracownikow.get(idKontaPracownika).getHaslo()) {
+				Metody.aktywnaOsoba = Metody.listaPracownikow.get(idKontaPracownika);
 				System.out.println("Załogowałeś się jako " + Metody.aktywnaOsoba.getImieNazwisko());
 			}
 

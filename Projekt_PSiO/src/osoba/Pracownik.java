@@ -1,11 +1,39 @@
-package Osoba;
+package osoba;
 
-import Adres.Adres;
+import adres.Adres;
 
 public class Pracownik extends OsobaZarzadzajaca {
 
-	public Pracownik(String imieNazwisko,int wiek,Adres[] adres,String email, String pesel, float ocena, String pesel, float ocena) {
-		super(imieNazwisko,wiek,adres, email,pesel, ocena, pesel, ocena);
+
+
+
+	public Pracownik(String email, String haslo, String login, String nazwiskoImie, int wiek, Adres[] adres,
+			double saldoKonta, String pesel, float ocena) {
+		super(email, haslo, login, nazwiskoImie, wiek, adres, saldoKonta, pesel, ocena);
+	}
+
+	@Override
+	public void wyswietlProdukty() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void wyswietlStanProduktu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void wyswietlStanKlienta() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void wyswietlKlientow() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
