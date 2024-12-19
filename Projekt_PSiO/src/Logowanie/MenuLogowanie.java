@@ -1,7 +1,6 @@
 package Logowanie;
 
 import Metody.Metody;
-import java.util.ArrayList;
 
 public class MenuLogowanie {
 	
@@ -89,22 +88,21 @@ public class MenuLogowanie {
 	
 	// Zwraca -1, jeśli login nie istnieje lub indeks osoby w tablicy, jeśli istnieje
 	public static int czyIstniejeLoginPracownika(String login) {
-		int czyIstnieje = -1;
+		
 		
 		for (int i = 0; i < Metody.listaPracownikow.size(); i++) {
-			if (login == Metody.listaPracownikow[i].getLogin())
+			if (login == Metody.listaPracownikow.get(i).getLogin())
 				return i;
 		}
 		
 		return -1;
-	}
+	} 
 	
 	// Zwraca -1, jeśli login nie istnieje lub indeks osoby w tablicy, jeśli istnieje
 	public static int czyIstniejeLoginKlienta(String login) {
-		int czyIstnieje = -1;
 		
 		for (int i = 0; i < Metody.listaKlientow.size(); i++) {
-			if (login == Metody.listaKlientow[i].getLogin())
+			if (login == Metody.listaKlientow.get(i).getLogin())
 				return i;
 		}
 		
@@ -113,10 +111,9 @@ public class MenuLogowanie {
 		
 	// Zwraca -1, jeśli email nie istnieje lub indeks osoby w tablicy, jeśli istnieje
 		public static int czyIstniejeEmailPracownika(String email) {
-			int czyIstnieje = -1;
 			
 			for (int i = 0; i < Metody.listaPracownikow.size(); i++) {
-				if (email == Metody.listaPracownikow[i].getEmail())
+				if (Metody.listaPracownikow.get(i).equals(email))
 					return i;
 			}
 			
@@ -125,10 +122,9 @@ public class MenuLogowanie {
 		
 		// Zwraca -1, jeśli email nie istnieje lub indeks osoby w tablicy, jeśli istnieje
 		public static int czyIstniejeEmailKlienta(String email) {
-			int czyIstnieje = -1;
 			
 			for (int i = 0; i < Metody.listaKlientow.size(); i++) {
-				if (email == Metody.listaKlientow[i].getEmail())
+				if (email == Metody.listaKlientow.get(i).getEmail())
 					return i;
 			}
 			

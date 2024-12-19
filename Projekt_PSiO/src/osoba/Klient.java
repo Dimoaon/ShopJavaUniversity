@@ -1,20 +1,25 @@
-package Osoba;
+package osoba;
 
-import Adres.Adres;
+
+import adres.Adres;
 
 public class Klient extends Osoba{
 	
+
 	private String promocjeKlienta;
 	private String[] historiaZakupow;
 	private String ranga;
 	//ranga Nowy, Średniozaawansowany, Stały
 
-	public Klient(String imieNazwisko, int wiek, Adres adres, String email, double saldoKonta,String promocjeKlienta,String[] historiaZakupow, String ranga) {
-		super(imieNazwisko, wiek, adres, email, saldoKonta);
-		this.promocjeKlienta=promocjeKlienta;
-		this.historiaZakupow=historiaZakupow;
-		this.ranga=ranga;
+
+	public Klient(String email, String haslo, String login, String nazwiskoImie, int wiek, Adres[] adres,
+			double saldoKonta, String promocjeKlienta, String[] historiaZakupow, String ranga) {
+		super(email, haslo, login, nazwiskoImie, wiek, adres, saldoKonta);
+		this.promocjeKlienta = promocjeKlienta;
+		this.historiaZakupow = historiaZakupow;
+		this.ranga = ranga;
 	}
+
 
 
 	public String getPromocjeKlienta() {
@@ -38,7 +43,7 @@ public class Klient extends Osoba{
 	public void setRanga(String ranga) {this.ranga = ranga;}
 	
 	public String toString() {
-		return "Klient [promocjeKlienta=" + getPromocjeKlienta() + ", historiaZakupow=" + Arrays.toString(historiaZakupow)
+		return "Klient [promocjeKlienta=" + getPromocjeKlienta() 
 				+ "]";
 	}
 

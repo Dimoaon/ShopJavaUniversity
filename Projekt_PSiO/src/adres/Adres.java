@@ -1,4 +1,4 @@
-package Adres;
+package adres;
 
 public class Adres {
 	private String ulica, numerBudynku,miasto,region,panstwo;
