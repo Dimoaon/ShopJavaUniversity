@@ -11,13 +11,13 @@ public class Zakupy implements Serializable {
 	// Składowe kłasy
 	private ArrayList<Produkty> kupioneProdukty;
 	private double cena;
-	private double cenaDoZapłaty;
+	private double cenaDoZaplaty;
 
 	// Konstruktor
-	public Zakupy(ArrayList<Produkty> kupioneProdukty, double cena, double cenaDoZapłaty) {
+	public Zakupy(ArrayList<Produkty> kupioneProdukty, double cena, double cenaDoZaplaty) {
 		this.kupioneProdukty = kupioneProdukty;
 		this.cena = cena;
-		this.cenaDoZapłaty = cenaDoZapłaty;
+		this.cenaDoZaplaty = cenaDoZaplaty;
 	}
 
 	// Getters and Setters
@@ -37,12 +37,12 @@ public class Zakupy implements Serializable {
 		this.cena = cena;
 	}
 
-	public double getCenaDoZapłaty() {
-		return cenaDoZapłaty;
+	public double getCenaDoZaplaty() {
+		return cenaDoZaplaty;
 	}
 
-	public void setCenaDoZapłaty(double cenaDoZapłaty) {
-		this.cenaDoZapłaty = cenaDoZapłaty;
+	public void setCenaDoZaplaty(double cenaDoZaplaty) {
+		this.cenaDoZaplaty = cenaDoZaplaty;
 	}
 
 }
