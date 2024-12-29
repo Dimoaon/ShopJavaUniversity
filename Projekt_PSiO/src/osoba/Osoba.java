@@ -1,47 +1,57 @@
 package osoba;
 
 import adres.Adres;
+import java.io.Serializable;
 
-public abstract class Osoba {
+public abstract class Osoba implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	// Składowe kłasy
 	private String email;
 	private String haslo;
 	private String login;
-	private String NazwiskoImie;
+	private String nazwisko;
+	private String imie;
 	private int wiek;
-	private Adres[] adres;
-
+	private Adres adres;
 	private double saldoKonta;
-	
-	
-	
-	
-	public Osoba(String email, String haslo, String login, String nazwiskoImie, int wiek, Adres[] adres,
+
+	// Konstruktor
+	public Osoba(String email, String haslo, String login, String nazwisko, String imie, int wiek, Adres adres,
 			double saldoKonta) {
 		this.email = email;
 		this.haslo = haslo;
 		this.login = login;
-		NazwiskoImie = nazwiskoImie;
+		this.nazwisko = nazwisko;
+		this.imie = imie;
 		this.wiek = wiek;
 		this.adres = adres;
 		this.saldoKonta = saldoKonta;
 	}
 
-
+	@Override
 	public String toString() {
-		return "Klient: Nazwisko: " + NazwiskoImie +
-				" adres: "+ adres +
-				" email: " + email +
-				" wiek: " + wiek +
-				" saldo konta : " + saldoKonta;
+		return "Email: " + email + ", Haslo: " + haslo + ", Login: " + login + ", Nazwisko: " + nazwisko + ", Imie: "
+				+ imie + ", Wiek: " + wiek + ", " + adres + ", Saldo konta: " + saldoKonta;
 	}
-	
-	
-	public String getImieNazwisko() {
-		return NazwiskoImie;
+
+
+	// Getters and Setters
+	public String getNazwisko() {
+		return nazwisko;
 	}
-	
-	public void setNaziwskoImie(String NazwiskoImie) {
-		this.NazwiskoImie = NazwiskoImie;
+
+	public void setNazwisko(String nazwisko) {
+		this.nazwisko = nazwisko;
+	}
+
+	public String getImie() {
+		return imie;
+	}
+
+	public void setImie(String imie) {
+		this.imie = imie;
 	}
 
 	public int getWiek() {
@@ -76,19 +86,17 @@ public abstract class Osoba {
 		this.haslo = haslo;
 	}
 
-	public Adres[] getAdres() {
+	public Adres getAdres() {
 		return adres;
 	}
 
-	public void setAdres(Adres[] adres) {
+	public void setAdres(Adres adres) {
 		this.adres = adres;
 	}
-
 
 	public String getLogin() {
 		return login;
 	}
-
 
 	public void setLogin(String login) {
 		this.login = login;

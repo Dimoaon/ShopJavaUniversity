@@ -2,20 +2,19 @@ package osoba;
 
 import adres.Adres;
 
-public class Pracownik extends OsobaZarzadzajaca {
+public class Kierownik extends OsobaZarzadzajaca {
 
 	private static final long serialVersionUID = 1L;
 
-	// Konstruktor
-	public Pracownik(String email, String haslo, String login, String nazwisko, String imie, int wiek, Adres adres,
+	//Konstruktor
+	public Kierownik(String email, String haslo, String login, String nazwisko, String imie, int wiek, Adres adres,
 			double saldoKonta, String pesel, float ocena) {
 		super(email, haslo, login, nazwisko, imie, wiek, adres, saldoKonta, pesel, ocena);
 	}
 
-	// Inne metody
 	@Override
 	public String toString() {
-		return "Pracownik [" + super.toString() + "]";
+		return "Kierownik [" + super.toString() + "]";
 	}
 
 	// Przesłonięcie metod abstrakcyjnych

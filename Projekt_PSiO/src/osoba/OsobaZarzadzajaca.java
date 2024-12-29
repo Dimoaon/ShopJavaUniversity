@@ -4,18 +4,27 @@ import adres.Adres;
 
 public abstract class OsobaZarzadzajaca extends Osoba {
 
+	private static final long serialVersionUID = 1L;
+
+	// Składowe kłasy
 	private String pesel;
 	private float ocena;
 
-
-
-	public OsobaZarzadzajaca(String email, String haslo, String login, String nazwiskoImie, int wiek, Adres[] adres,
-			double saldoKonta, String pesel, float ocena) {
-		super(email, haslo, login, nazwiskoImie, wiek, adres, saldoKonta);
+	// Konstruktor
+	public OsobaZarzadzajaca(String email, String haslo, String login, String nazwisko, String imie, int wiek,
+			Adres adres, double saldoKonta, String pesel, float ocena) {
+		super(email, haslo, login, nazwisko, imie, wiek, adres, saldoKonta);
 		this.pesel = pesel;
 		this.ocena = ocena;
 	}
 
+	// Inne metody
+	@Override
+	public String toString() {
+		return super.toString() + ", PESEL: " + pesel + ", Ocena: " + ocena;
+	}
+
+	// Getters and Setters
 	public String getPesel() {
 		return pesel;
 	}
@@ -32,6 +41,7 @@ public abstract class OsobaZarzadzajaca extends Osoba {
 		this.ocena = ocena;
 	}
 
+	// Metody abstrakcyjne
 	abstract public void wyswietlProdukty();
 
 	abstract public void wyswietlStanProduktu();
