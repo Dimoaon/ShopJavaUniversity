@@ -43,7 +43,7 @@ public abstract class WspolneGUI implements GUIstrategia {
 				// TODO dostęp do danych konta
 			}
 		});
-		
+    
 		// Zapisywanie zmian obiektów
 		mntmZapisz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -60,15 +60,6 @@ public abstract class WspolneGUI implements GUIstrategia {
 			}
 		});
 
-	}
-
-	// Getters and Setters
-	public JMenuBar getMenuBar() {
-		return menuBar;
-	}
-
-	public void setMenuBar(JMenuBar menuBar) {
-		this.menuBar = menuBar;
 	}
 
 }
