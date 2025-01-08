@@ -1,5 +1,7 @@
 package strategiaGUI;
 
+import java.io.File;
+import javax.imageio.ImageIO;
 import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.awt.*;
@@ -23,6 +25,12 @@ public abstract class WspolneGUI implements GUIstrategia {
 	public void GUIcreate(JFrame frame1) {
 		frame1.setTitle("Nasz Sklep");
 		frame1.setSize(900, 700);
+
+		try {
+		    frame1.setIconImage(ImageIO.read(new File("Grafika/dolarZielony.png")));
+		} catch (Exception e) {
+		    System.err.println("Błąd podczas wczytywania ikony: " + e.getMessage());
+		}
 
 		// Główne menu
 		menuBar = new JMenuBar();
