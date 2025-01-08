@@ -1,5 +1,7 @@
 package strategiaGUI;
 
+import javax.imageio.ImageIO;
+import java.io.File;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -24,6 +26,15 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
     @Override
     public void GUIcreate(JFrame frame1) {
         super.GUIcreate(frame1);
+	try 
+	{
+	    frame1.setIconImage(ImageIO.read(new File("Grafika/dolarCzerwony.png")));
+	} 
+	catch (Exception e) 
+	{
+	    System.err.println("Błąd podczas wczytywania ikony: " + e.getMessage());
+	}
+	    
         
         createManagementMenu(frame1);
     }
