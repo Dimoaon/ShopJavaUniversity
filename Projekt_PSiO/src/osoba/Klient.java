@@ -80,6 +80,9 @@ public class Klient extends Osoba {
 
 	private boolean czyWystarczyTowarow(JFrame frame1) {
 
+		//koszyk.setListaProduktow(null); // testowanie assert
+		assert (koszyk.getListaProduktow() != null) : "Lista produktów w koszyku jest null!";
+
 		for (Produkty produkt : koszyk.getListaProduktow()) {
 
 			Produkty temp = Metody.znajdzProduktPoID(produkt.getIdProduktu());

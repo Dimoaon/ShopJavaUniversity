@@ -20,12 +20,15 @@ public class Main {
 		// Pierwsze konto w sklepie, jeśli jeszcze nie było (admin)
 		if (Metody.getListaOsobZarzadzajacych().isEmpty())
 			Metody.getListaOsobZarzadzajacych()
-					.add(new Kierownik("admin@gmail.com", "admin", "admin", "Nazwisko", "Imie", 18, null, 0, ""));
+					.add(new Kierownik("admin@gmail.com", "admin", "admin", "Nazwisko", "Imie", 18, null, 0, "000000000000"));
 
 		//testoweDane();
 		
 		@SuppressWarnings("unused")
 		GUImain oknoGlowne = new GUImain();
+		
+		// Metody.setWybraneGUI(null); // testowanie assert
+		assert (Metody.getWybraneGUI() != null) : "Wybrane GUI jest nullem!";
 	}
 
 	private static void testoweDane() {

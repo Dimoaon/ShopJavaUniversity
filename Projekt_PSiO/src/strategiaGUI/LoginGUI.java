@@ -22,6 +22,9 @@ public class LoginGUI implements GUIstrategia {
 	// Konstruktor
 	public LoginGUI(JFrame frame1) {
 		
+		//frame1 = null; // testowanie assert
+		assert (frame1 != null) : "Frame1 jest nullem!";
+		
 		try {
 		    frame1.setIconImage(ImageIO.read(new File("Grafika/login.jpg")));
 		} catch (Exception e) {

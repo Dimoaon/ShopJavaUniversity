@@ -59,6 +59,10 @@ public class Metody {
 
 	// Inne metody
 	public static Produkty znajdzProduktPoID(int idproduktu) {
+		
+		//listaProduktow = null; // testowanie assert
+		assert (listaProduktow != null) : "Lista produktów jest nullem!!";
+		
 		for (Produkty produkt : listaProduktow) {
 			if (produkt.getIdProduktu() == idproduktu)
 				return produkt;

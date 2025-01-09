@@ -26,7 +26,7 @@ public class Zakupy implements Serializable {
 
 	public double obliczCene() {
 		double cena = 0;
-
+		
 		for (Produkty produkt : listaProduktow) {
 			cena += produkt.getCenaProduktu();
 		}
