@@ -96,7 +96,7 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         
         toolIcon(clientFrame);
 
-        String[] columnNames = {"ID", "Imię", "Nazwisko", "Email", "Ranga"};    
+        String[] columnNames = {"ID", "Imię", "Nazwisko", "Email", "Saldo Konta"};    
         
         klientTableModel = new DefaultTableModel(columnNames, 0) {
 			private static final long serialVersionUID = 1L;
@@ -135,10 +135,9 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
     }
 
     private void addClient() {
-        JTextField imieField = new JTextField(10);
-        JTextField nazwiskoField = new JTextField(10);
-        JTextField emailField = new JTextField(10);
-        JTextField rangaField = new JTextField(10);
+        JTextField imieField = new JTextField(20);
+        JTextField nazwiskoField = new JTextField(20);
+        JTextField emailField = new JTextField(20);
 
         JPanel panel = new JPanel(new GridLayout(4, 2));
         panel.add(new JLabel("Imię:"));
@@ -147,8 +146,6 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         panel.add(nazwiskoField);
         panel.add(new JLabel("Email:"));
         panel.add(emailField);
-        panel.add(new JLabel("Ranga:"));
-        panel.add(rangaField);
 
         int result = JOptionPane.showConfirmDialog(null, panel, "Dodaj Klienta", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
@@ -172,9 +169,9 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         if (selectedRow != -1) {
             Klient klient = listaKlientow.get(selectedRow);
 
-            JTextField imieField = new JTextField(klient.getImie(), 10);
-            JTextField nazwiskoField = new JTextField(klient.getNazwisko(), 10);
-            JTextField emailField = new JTextField(klient.getEmail(), 10);
+            JTextField imieField = new JTextField(klient.getImie(), 20);
+            JTextField nazwiskoField = new JTextField(klient.getNazwisko(), 20);
+            JTextField emailField = new JTextField(klient.getEmail(), 20);
 
             JPanel panel = new JPanel(new GridLayout(4, 2));
             panel.add(new JLabel("Imię:"));
@@ -208,7 +205,7 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
 
-        String[] columnNames = {"ID", "Imię", "Nazwisko", "Email", "Ranga"};
+        String[] columnNames = {"ID", "Imię", "Nazwisko", "Email", "Saldo Konta"};
         
         DefaultTableModel searchTableModel = new DefaultTableModel(columnNames, 0){
         	private static final long serialVersionUID = 1L;
@@ -242,7 +239,7 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         tableModel.setRowCount(0);
         for (Klient klient : listaKlientow) {
             if (klient.getEmail().contains(criteria) || klient.getNazwisko().contains(criteria)) {
-                tableModel.addRow(new Object[]{klient.hashCode(), klient.getImie(), klient.getNazwisko(), klient.getEmail()});
+                tableModel.addRow(new Object[]{klient.hashCode(), klient.getImie(), klient.getNazwisko(), klient.getEmail(), klient.getSaldoKonta()});
             }
         }
     }
@@ -409,7 +406,7 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
     private void refreshClientTable() {
         klientTableModel.setRowCount(0);
         for (Klient klient : listaKlientow) {
-            klientTableModel.addRow(new Object[]{klient.hashCode(), klient.getImie(), klient.getNazwisko(), klient.getEmail()});
+            klientTableModel.addRow(new Object[]{klient.hashCode(), klient.getImie(), klient.getNazwisko(), klient.getEmail(), klient.getSaldoKonta()});
         }
     }
 
