@@ -58,9 +58,12 @@ public class Metody {
 	}
 
 	// Inne metody
-	public static void wystwietlKlientow() {
-		for (Klient klient : listaKlientow) {
-			System.out.println(klient);
+	public static Produkty znajdzProduktPoID(int idproduktu) {
+		for (Produkty produkt : listaProduktow) {
+			if (produkt.getIdProduktu() == idproduktu)
+				return produkt;
 		}
+		
+		return null;
 	}
 }

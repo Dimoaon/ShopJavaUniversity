@@ -1,11 +1,11 @@
 package main;
 
 import java.util.ArrayList;
-
 import bibliotekaMetodIPol.*;
 import inneGUI.*;
 import osoba.*;
 import produkty.*;
+import zakupy.*;
 
 public class Main {
 
@@ -31,7 +31,7 @@ public class Main {
 	private static void testoweDane() {
 		// Osoby
 		Metody.getListaKlientow()
-				.add(new Klient("klient1@gmail.com", "word", "mójlogin", "Ivanov", "Ivan", 18, null, 0, null, new ArrayList<>(), new ArrayList<>()));
+				.add(new Klient("klient1@gmail.com", "word", "mójlogin", "Ivanov", "Ivan", 18, null, 0, null, new ArrayList<>(), new Zakupy()));
 		Metody.getListaOsobZarzadzajacych().add(new Pracownik("pracownik1@gmail.com", "1234", "plogin1", "Poręba",
 				"Piotr", 25, null, 200.0, "423432324324"));
 		Metody.getListaOsobZarzadzajacych().add(new Pracownik("pracownik2@gmail.com", "12345", "plogin2", "Lenkiewicz",
