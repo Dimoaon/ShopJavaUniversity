@@ -59,7 +59,7 @@ public class Klient extends Osoba {
 	}
 
 	public void kup(JFrame frame1) {
-		koszyk.setCenaDoZaplaty(koszyk.obliczCene() * (1 + this.promocjaKlienta.promocja() / 100.0));
+		koszyk.setCenaDoZaplaty(koszyk.obliczCene() * (1 - this.promocjaKlienta.promocja() / 100.0));
 		if (super.getSaldoKonta() < koszyk.getCenaDoZaplaty()) {
 			JOptionPane.showMessageDialog(frame1, "Brakuje pięniędzy! Doładuj konto i wróć.", "Proces kupowania",
 					JOptionPane.ERROR_MESSAGE);
