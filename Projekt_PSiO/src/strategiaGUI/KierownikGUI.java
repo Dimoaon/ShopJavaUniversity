@@ -26,18 +26,18 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
     @Override
     public void GUIcreate(JFrame frame1) {
         super.GUIcreate(frame1);
-	try 
-	{
-	    frame1.setIconImage(ImageIO.read(new File("Grafika/dolarCzerwony.png")));
-	} 
-	catch (Exception e) 
-	{
-	    System.err.println("Błąd podczas wczytywania ikony: " + e.getMessage());
-	}
-	    
+        
+        try {
+		    frame1.setIconImage(ImageIO.read(new File("Grafika/dolarCzerwony.png")));
+		} catch (Exception e) {
+		    System.err.println("Błąd podczas wczytywania ikony: " + e.getMessage());
+		}
         
         createManagementMenu(frame1);
     }
+    
+    
+    
 
     private void createManagementMenu(JFrame frame1) {
         JMenuBar menuBar = frame1.getJMenuBar();
@@ -52,17 +52,33 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
 
         // Opcje dla klientów
         JMenuItem manageClients = new JMenuItem("Zarządzaj klientami");
-        manageClients.addActionListener(e -> showClientManagement());
+        manageClients.addActionListener(e -> {
+            manageClients.setEnabled(false);
+            showClientManagement(manageClients);
+        });
+        
         JMenuItem searchClients = new JMenuItem("Wyszukaj klientów");
-        searchClients.addActionListener(e -> showClientSearch());
+        searchClients.addActionListener(e -> {
+            searchClients.setEnabled(false);
+            showClientSearch(searchClients);
+        });
+        
         clientsSubmenu.add(manageClients);
         clientsSubmenu.add(searchClients);
 
         // Opcje dla pracowników
         JMenuItem manageEmployees = new JMenuItem("Zarządzaj pracownikami");
-        manageEmployees.addActionListener(e -> showEmployeeManagement());
+        manageEmployees.addActionListener(e -> {
+            manageEmployees.setEnabled(false);
+            showEmployeeManagement(manageEmployees);
+        });
+        
         JMenuItem searchEmployees = new JMenuItem("Wyszukaj pracowników");
-        searchEmployees.addActionListener(e -> showEmployeeSearch());
+        searchEmployees.addActionListener(e -> {
+            searchEmployees.setEnabled(false);
+            showEmployeeSearch(searchEmployees);
+        });
+        
         employeesSubmenu.add(manageEmployees);
         employeesSubmenu.add(searchEmployees);
 
@@ -71,10 +87,12 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         menuBar.add(toolsMenu);
     }
 
-    private void showClientManagement() {
+    private void showClientManagement(JMenuItem manageClients) {
         JFrame clientFrame = new JFrame("Zarządzanie Klientami");
         clientFrame.setSize(800, 600);
         clientFrame.setLayout(new BorderLayout());
+        
+        toolIcon(clientFrame);
 
         String[] columnNames = {"ID", "Imię", "Nazwisko", "Email", "Ranga"};    
         
@@ -103,6 +121,14 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
 
         clientFrame.add(new JScrollPane(klientTable), BorderLayout.CENTER);
         clientFrame.add(buttonPanel, BorderLayout.SOUTH);
+        
+        clientFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            	manageClients.setEnabled(true);
+            }
+        });
+        
         clientFrame.setVisible(true);
     }
 
@@ -166,9 +192,11 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         }
     }
 
-    private void showClientSearch() {
+    private void showClientSearch(JMenuItem searchClients) {
         JFrame searchFrame = new JFrame("Wyszukiwanie Klientów");
         searchFrame.setSize(800, 600);
+        
+        toolIcon(searchFrame);
 
         JPanel searchPanel = new JPanel(new FlowLayout());
         JTextField searchField = new JTextField(20);
@@ -192,7 +220,19 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         searchButton.addActionListener(e -> searchClients(searchField.getText(), searchTableModel));
 
         searchFrame.add(searchPanel, BorderLayout.NORTH);
+        
+        
+        
         searchFrame.add(new JScrollPane(searchTable), BorderLayout.CENTER);
+        
+        searchFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            	searchClients.setEnabled(true);
+            }
+        });
+        
+        
         searchFrame.setVisible(true);
     }
 
@@ -205,13 +245,21 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         }
     }
 
-    private void showEmployeeManagement() {
+    private void showEmployeeManagement(JMenuItem showEmployee) {
         JFrame employeeFrame = new JFrame("Zarządzanie Pracownikami");
         employeeFrame.setSize(800, 600);
         employeeFrame.setLayout(new BorderLayout());
+        
+        toolIcon(employeeFrame);
 
         String[] columnNames = {"ID", "Imię", "Nazwisko", "Email", "Saldo Konta"};
-        pracownikTableModel = new DefaultTableModel(columnNames, 0);
+        pracownikTableModel = new DefaultTableModel(columnNames, 0){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         JTable pracownikTable = new JTable(pracownikTableModel);
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -230,6 +278,14 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
 
         employeeFrame.add(new JScrollPane(pracownikTable), BorderLayout.CENTER);
         employeeFrame.add(buttonPanel, BorderLayout.SOUTH);
+        
+        employeeFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            	showEmployee.setEnabled(true);
+            }
+        });
+        
         employeeFrame.setVisible(true);
     }
 
@@ -298,9 +354,11 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         }
     }
 
-    private void showEmployeeSearch() {
+    private void showEmployeeSearch(JMenuItem searchEmployees) {
         JFrame searchFrame = new JFrame("Wyszukiwanie Pracowników");
         searchFrame.setSize(800, 600);
+        
+        toolIcon(searchFrame);
 
         JPanel searchPanel = new JPanel(new FlowLayout());
         JTextField searchField = new JTextField(20);
@@ -311,13 +369,29 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         searchPanel.add(searchButton);
 
         String[] columnNames = {"ID", "Imię", "Nazwisko", "Email", "Saldo Konta"};
-        DefaultTableModel searchTableModel = new DefaultTableModel(columnNames, 0);
+        DefaultTableModel searchTableModel = new DefaultTableModel(columnNames, 0){
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         JTable searchTable = new JTable(searchTableModel);
 
         searchButton.addActionListener(e -> searchEmployees(searchField.getText(), searchTableModel));
 
         searchFrame.add(searchPanel, BorderLayout.NORTH);
         searchFrame.add(new JScrollPane(searchTable), BorderLayout.CENTER);
+        
+        searchFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            	searchEmployees.setEnabled(true);
+            }
+        });
+        
+        searchFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
         searchFrame.setVisible(true);
     }
 
@@ -346,4 +420,14 @@ public class KierownikGUI extends OsobaZarzadzajacaGUI {
         }
         }
     }
+    
+    private void toolIcon(JFrame Frame)
+    {
+    	try {
+		    Frame.setIconImage(ImageIO.read(new File("Grafika/toolIcon.png")));
+		} catch (Exception e) {
+		    System.err.println("Błąd podczas wczytywania ikony: " + e.getMessage());
+		}
+    }
+    
 }
