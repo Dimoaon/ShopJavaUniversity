@@ -18,29 +18,4 @@ public class Pracownik extends OsobaZarzadzajaca {
 		return "Pracownik [" + super.toString() + "]";
 	}
 
-	// Przesłonięcie metod abstrakcyjnych
-	@Override
-	public void wyswietlProdukty() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void wyswietlStanProduktu() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void wyswietlStanKlienta() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void wyswietlKlientow() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

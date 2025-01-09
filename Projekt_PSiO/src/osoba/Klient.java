@@ -56,7 +56,7 @@ public class Klient extends Osoba {
 	}
 
 	public void kup() {
-		
+		// TODO
 	}
 
 }

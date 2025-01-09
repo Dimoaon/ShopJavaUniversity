@@ -30,14 +30,5 @@ public abstract class OsobaZarzadzajaca extends Osoba {
 	public void setPesel(String pesel) {
 		this.pesel = pesel;
 	}
-	
-	// Metody abstrakcyjne
-	abstract public void wyswietlProdukty();
-
-	abstract public void wyswietlStanProduktu();
-
-	abstract public void wyswietlStanKlienta();
-
-	abstract public void wyswietlKlientow();
 
 }
