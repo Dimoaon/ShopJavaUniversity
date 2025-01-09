@@ -27,8 +27,6 @@ public class Main {
 		@SuppressWarnings("unused")
 		GUImain oknoGlowne = new GUImain();
 		
-		// Metody.setWybraneGUI(null); // testowanie assert
-		assert (Metody.getWybraneGUI() != null) : "Wybrane GUI jest nullem!";
 	}
 
 	private static void testoweDane() {
