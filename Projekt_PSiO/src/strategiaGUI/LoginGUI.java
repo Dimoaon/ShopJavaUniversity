@@ -1,9 +1,11 @@
 package strategiaGUI;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import bibliotekaMetodIPol.*;
 import logowanie.*;
 
@@ -19,6 +21,13 @@ public class LoginGUI implements GUIstrategia {
 
 	// Konstruktor
 	public LoginGUI(JFrame frame1) {
+		
+		try {
+		    frame1.setIconImage(ImageIO.read(new File("Grafika/login.jpg")));
+		} catch (Exception e) {
+		    System.err.println("Błąd podczas wczytywania ikony: " + e.getMessage());
+		}
+		
 		frame1.getContentPane().removeAll();
 		GUIcreate(frame1);
 		frame1.revalidate();
