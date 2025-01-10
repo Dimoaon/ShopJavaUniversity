@@ -1,12 +1,19 @@
 package strategiaGUI;
 
 import javax.swing.*;
+
+import adres.Adres;
+
 import java.awt.*;
 import java.awt.event.*;
 import bibliotekaMetodIPol.*;
 import produkty.*;
+import promocjaStrategia.PromocjaPodstawowa;
+import zakupy.Zakupy;
+
 import java.util.ArrayList;
 import logowanie.*;
+import osoba.Klient;
 
 public class KlientGUI extends WspolneGUI {
 
@@ -40,33 +47,6 @@ public class KlientGUI extends WspolneGUI {
 		frame1.getContentPane().add(contentPanel, BorderLayout.CENTER);
 		frame1.add(new JScrollPane(contentPanel));
 
-		/*
-		 * toggleButton = new JButton(title); toggleButton.setFocusPainted(false);
-		 * toggleButton.setContentAreaFilled(false);
-		 * toggleButton.setBorderPainted(false);
-		 * toggleButton.setHorizontalAlignment(SwingConstants.LEFT);
-		 * 
-		 * toggleButton.addActionListener(new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) { toggleContent(); } });
-		 * 
-		 * contentPanel.add(toggleButton, BorderLayout.NORTH);
-		 * contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-		 * contentPanel.setVisible(false);
-		 * 
-		 * for(Produkty produkt : products) {
-		 * contentPanel.add(createItemPanel(produkt.getNazwaProduktu()));
-		 * 
-		 * }
-		 * 
-		 * scrollPane = new JScrollPane(contentPanel);
-		 * scrollPane.setVerticalScrollBarPolicy(JScrollPane.
-		 * VERTICAL_SCROLLBAR_AS_NEEDED); scrollPane.setPreferredSize(new Dimension(380,
-		 * 150)); // Fixed height for scrollable area scrollPane.setVisible(false); //
-		 * Initially hidden
-		 * 
-		 * contentPanel.add(scrollPane, BorderLayout.CENTER);
-		 */
 	}
 
 	@Override
@@ -95,7 +75,7 @@ public class KlientGUI extends WspolneGUI {
         JMenu mnKonto = new JMenu("Konto");
         menuBar.add(mnKonto);
         
-        double saldoKonta = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta("klogin1")).getSaldoKonta();
+        double saldoKonta = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(Metody.getLoginAktywnejOsoby())).getSaldoKonta();
         String saldoString = String.valueOf(Math.round(saldoKonta * 100) / 100.0);
         
         JMenuItem mntmSaldoKonta = new JMenuItem("Saldo konta: " + saldoString);
@@ -103,10 +83,33 @@ public class KlientGUI extends WspolneGUI {
         
         JMenuItem mntmDoladujKonto = new JMenuItem("Doładuj konto");
         mnKonto.add(mntmDoladujKonto);
+        mntmDoladujKonto.addActionListener(e -> doladujKonto(frame1, mntmSaldoKonta));
         
         JMenuItem mntmLoteria = new JMenuItem("Loteria");
         mnKonto.add(mntmLoteria);
     }
+	
+	private void doladujKonto(JFrame frame1, JMenuItem mntmSaldoKonta) {
+		 JTextField kwotaField = new JTextField(20);
+		 JPanel panel = new JPanel(new GridLayout(1, 2));
+	        panel.add(new JLabel("Kwota doładowania:"));
+	        panel.add(kwotaField);
+	        
+	        int result = JOptionPane.showConfirmDialog(frame1, panel, "Doładowanie konta", JOptionPane.OK_CANCEL_OPTION);
+	        if (result == JOptionPane.OK_OPTION) {
+	            try {
+	            	Klient klient = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(Metody.getLoginAktywnejOsoby()));
+	            	klient.setSaldoKonta(klient.getSaldoKonta() + Double.parseDouble(kwotaField.getText()));
+	            	
+	            	double saldoKonta = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(Metody.getLoginAktywnejOsoby())).getSaldoKonta();
+	                String saldoString = String.valueOf(Math.round(saldoKonta * 100) / 100.0);
+	                mntmSaldoKonta.setText("Saldo konta: " + saldoString);
+	            	
+	            } catch(NumberFormatException e) {
+	            	JOptionPane.showMessageDialog(frame1, "Kwota musi być liczbą!", "Błąd formatu", JOptionPane.ERROR_MESSAGE);
+	            }
+	        }
+	}
 
 	private JPanel createKategoria(String title, ArrayList<Produkty> products) {
 
