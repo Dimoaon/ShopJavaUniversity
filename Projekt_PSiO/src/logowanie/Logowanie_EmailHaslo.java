@@ -25,8 +25,9 @@ public class Logowanie_EmailHaslo implements Logowanie {
 		if (idKontaOsobyZarzadzajacej == -1) {
 
 			if (haslo.equals(Metody.getListaKlientow().get(idKontaKlienta).getHaslo())) {
-				Metody.setWybraneGUI(new KlientGUI(frame1));
 				Metody.setLoginAktywnejOsoby(Metody.getListaKlientow().get(idKontaKlienta).getLogin());
+				Metody.setWybraneGUI(new KlientGUI(frame1));
+				
 				JOptionPane.showMessageDialog(frame1,
 						"Witamy, " + Metody.getListaKlientow().get(idKontaKlienta).getImie() + " "
 								+ Metody.getListaKlientow().get(idKontaKlienta).getNazwisko(),

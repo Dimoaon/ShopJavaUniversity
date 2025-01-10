@@ -6,6 +6,7 @@ import java.awt.event.*;
 import bibliotekaMetodIPol.*;
 import produkty.*;
 import java.util.ArrayList;
+import logowanie.*;
 
 public class KlientGUI extends WspolneGUI {
 
@@ -71,10 +72,41 @@ public class KlientGUI extends WspolneGUI {
 	@Override
 	public void GUIcreate(JFrame frame1) {
 		super.GUIcreate(frame1);
-
+		createManagementMenu(frame1);
 		// TODO Auto-generated method stub
 
 	}
+	
+	private void createManagementMenu(JFrame frame1) {
+        JMenuBar menuBar = frame1.getJMenuBar();
+
+        JMenu mnProdukty = new JMenu("Produkty");
+        menuBar.add(mnProdukty);
+        
+        JMenuItem mntmWszystkieProdukty = new JMenuItem("Wszystkie produkty");
+        mnProdukty.add(mntmWszystkieProdukty);
+        
+        JMenuItem mntmUlubioneProdukty = new JMenuItem("Ulubione produkty");
+        mnProdukty.add(mntmUlubioneProdukty);
+        
+        JMenu mnKoszyk = new JMenu("Koszyk");
+        menuBar.add(mnKoszyk);
+        
+        JMenu mnKonto = new JMenu("Konto");
+        menuBar.add(mnKonto);
+        
+        double saldoKonta = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta("klogin1")).getSaldoKonta();
+        String saldoString = String.valueOf(Math.round(saldoKonta * 100) / 100.0);
+        
+        JMenuItem mntmSaldoKonta = new JMenuItem("Saldo konta: " + saldoString);
+        mnKonto.add(mntmSaldoKonta);
+        
+        JMenuItem mntmDoladujKonto = new JMenuItem("Doładuj konto");
+        mnKonto.add(mntmDoladujKonto);
+        
+        JMenuItem mntmLoteria = new JMenuItem("Loteria");
+        mnKonto.add(mntmLoteria);
+    }
 
 	private JPanel createKategoria(String title, ArrayList<Produkty> products) {
 
