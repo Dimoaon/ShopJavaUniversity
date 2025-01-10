@@ -75,23 +75,21 @@ public class KlientGUI extends WspolneGUI {
         JMenu mnKonto = new JMenu("Konto");
         menuBar.add(mnKonto);
         
-        double saldoKonta = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(Metody.getLoginAktywnejOsoby())).getSaldoKonta();
-        String saldoString = String.valueOf(Math.round(saldoKonta * 100) / 100.0);
-        
-        JMenuItem mntmSaldoKonta = new JMenuItem("Saldo konta: " + saldoString + " PLN");
-        mnKonto.add(mntmSaldoKonta);
+        JLabel lbSaldoKonta = new JLabel();
+    	refreshSaldoKonta(lbSaldoKonta);
+        mnKonto.add(lbSaldoKonta);
         
         JMenuItem mntmDoladujKonto = new JMenuItem("Doładuj konto");
         mnKonto.add(mntmDoladujKonto);
-        mntmDoladujKonto.addActionListener(e -> doladujKonto(frame1, mntmSaldoKonta));
+        mntmDoladujKonto.addActionListener(e -> doladujKonto(frame1, lbSaldoKonta));
         
         JMenuItem mntmLoteria = new JMenuItem("Loteria");
         mnKonto.add(mntmLoteria);
     }
 	
-	private void doladujKonto(JFrame frame1, JMenuItem mntmSaldoKonta) {
-		 JTextField kwotaField = new JTextField(20);
-		 JPanel panel = new JPanel(new GridLayout(1, 2));
+	private void doladujKonto(JFrame frame1, JLabel lbSaldoKonta) {
+		 JTextField kwotaField = new JTextField(10);
+		 JPanel panel = new JPanel(new GridLayout(2, 1));
 	        panel.add(new JLabel("Kwota doładowania:"));
 	        panel.add(kwotaField);
 	        
@@ -101,9 +99,9 @@ public class KlientGUI extends WspolneGUI {
 	            	Klient klient = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(Metody.getLoginAktywnejOsoby()));
 	            	klient.setSaldoKonta(klient.getSaldoKonta() + Double.parseDouble(kwotaField.getText()));
 	            	
-	            	double saldoKonta = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(Metody.getLoginAktywnejOsoby())).getSaldoKonta();
-	                String saldoString = String.valueOf(Math.round(saldoKonta * 100) / 100.0);
-	                mntmSaldoKonta.setText("Saldo konta: " + saldoString + " PLN");
+	            	refreshSaldoKonta(lbSaldoKonta);
+	            	
+	            	JOptionPane.showMessageDialog(frame1, "Konto zostało doładowane pomyślnie. Dziękujemy!", "Info doładowania", JOptionPane.INFORMATION_MESSAGE);
 	            	
 	            } catch(NumberFormatException e) {
 	            	JOptionPane.showMessageDialog(frame1, "Kwota musi być liczbą!", "Błąd formatu", JOptionPane.ERROR_MESSAGE);
@@ -111,6 +109,12 @@ public class KlientGUI extends WspolneGUI {
 	        }
 	}
 
+	private void refreshSaldoKonta(JLabel lbSaldoKonta) {
+		double saldoKonta = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(Metody.getLoginAktywnejOsoby())).getSaldoKonta();
+        String saldoString = String.valueOf(Math.round(saldoKonta * 100) / 100.0);
+        lbSaldoKonta.setText(" Saldo konta: " + saldoString + " PLN");
+	}
+	
 	private JPanel createKategoria(String title, ArrayList<Produkty> products) {
 
 		JPanel categoryPanel = new JPanel();
