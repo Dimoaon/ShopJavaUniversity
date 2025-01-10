@@ -1,5 +1,7 @@
 package promocjaStrategia;
 
-public interface Promocja {
+import java.io.Serializable;
+
+public interface Promocja extends Serializable {
 	int promocja();
 }

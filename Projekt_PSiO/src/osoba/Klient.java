@@ -69,6 +69,7 @@ public class Klient extends Osoba {
 						JOptionPane.ERROR_MESSAGE);
 
 			} else {
+				odswiezIloscProduktow();
 				this.historiaZakupow.add(koszyk);
 				this.koszyk = new Zakupy();
 				JOptionPane.showMessageDialog(frame1, "Dziękujemy za zakupy!", "Proces kupowania",
@@ -76,6 +77,15 @@ public class Klient extends Osoba {
 			}
 
 		}
+	}
+
+	private void odswiezIloscProduktow() {
+		
+		for (Produkty produkt : koszyk.getListaProduktow()) {
+			Produkty temp = Metody.znajdzProduktPoID(produkt.getIdProduktu());
+			temp.setLiczbaProduktu(temp.getLiczbaProduktu() - produkt.getLiczbaProduktu());
+		}
+		
 	}
 
 	private boolean czyWystarczyTowarow(JFrame frame1) {
