@@ -164,7 +164,7 @@ public class KlientGUI extends WspolneGUI {
 		// Image.SCALE_SMOOTH);
 		// JLabel iconLabel = new JLabel(new ImageIcon(scaledImage));
 		JLabel nameLabel = new JLabel(name);
-		JButton itemButton = new JButton("Kup");
+		JButton itemButton = new JButton("Dodaj do koszyka");
 		itemButton.setAlignmentX(Component.LEFT_ALIGNMENT);
 		nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
