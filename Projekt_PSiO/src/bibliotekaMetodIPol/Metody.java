@@ -3,13 +3,17 @@ package bibliotekaMetodIPol;
 import osoba.*;
 import produkty.*;
 import strategiaGUI.*;
-import java.util.ArrayList;;
+import java.util.ArrayList;
+import logowanie.MenuLogowanie;
+import loteria.*;
 
 public class Metody {
 
 	// Pola_statyczne______________________________________________________________________________
-	private static GUIstrategia wybraneGUI;;
+	private static GUIstrategia wybraneGUI;
 	private static String loginAktywnejOsoby;
+	
+	private static Loteria loteria;
 
 	private static ArrayList<OsobaZarzadzajaca> listaOsobZarzadzajacych = new ArrayList<>();
 	private static ArrayList<Klient> listaKlientow = new ArrayList<>();
@@ -31,6 +35,14 @@ public class Metody {
 
 	public static void setLoginAktywnejOsoby(String loginAktywnejOsoby) {
 		Metody.loginAktywnejOsoby = loginAktywnejOsoby;
+	}
+
+	public static Loteria getLoteria() {
+		return loteria;
+	}
+
+	public static void setLoteria(Loteria loteria) {
+		Metody.loteria = loteria;
 	}
 
 	public static ArrayList<OsobaZarzadzajaca> getListaOsobZarzadzajacych() {
@@ -59,15 +71,21 @@ public class Metody {
 
 	// Inne metody
 	public static Produkty znajdzProduktPoID(int idproduktu) {
-		
-		//listaProduktow = null; // testowanie assert
+
+		// listaProduktow = null; // testowanie assert
 		assert (listaProduktow != null) : "Lista produktów jest nullem!!";
-		
+
 		for (Produkty produkt : listaProduktow) {
 			if (produkt.getIdProduktu() == idproduktu)
 				return produkt;
 		}
-		
+
 		return null;
 	}
+
+	public static void updateSaldoKonta(double zmiana, String login) {
+		Klient klient = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(login));
+		klient.setSaldoKonta(klient.getSaldoKonta() + zmiana);
+	}
+
 }

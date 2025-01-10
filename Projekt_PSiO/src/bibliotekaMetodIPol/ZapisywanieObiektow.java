@@ -9,6 +9,7 @@ import produkty.*;
 public class ZapisywanieObiektow {
 
 	public static void zapiszDane(JFrame frame1) {
+		zapiszLoterie();
 		zapiszKlientow();
 		zapiszPracownikow();
 		zapiszKierownikow();
@@ -18,6 +19,17 @@ public class ZapisywanieObiektow {
 		zapiszIDProoduktu();
 		JOptionPane.showMessageDialog(frame1, "Zmiany zostały zapisane", "Informacja zapisywania danych",
 				JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	private static void zapiszLoterie() {
+		try (ObjectOutputStream writeob = new ObjectOutputStream(new FileOutputStream("./BazaDanych/Loteria.ser"))) {
+			writeob.writeObject(Metody.getLoteria());
+			System.out.println("Loteria zapisana pomyślnie.");
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	public static void zapiszSposobLogowania() {
