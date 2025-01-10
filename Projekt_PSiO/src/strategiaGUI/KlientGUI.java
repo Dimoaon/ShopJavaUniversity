@@ -78,7 +78,7 @@ public class KlientGUI extends WspolneGUI {
         double saldoKonta = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(Metody.getLoginAktywnejOsoby())).getSaldoKonta();
         String saldoString = String.valueOf(Math.round(saldoKonta * 100) / 100.0);
         
-        JMenuItem mntmSaldoKonta = new JMenuItem("Saldo konta: " + saldoString);
+        JMenuItem mntmSaldoKonta = new JMenuItem("Saldo konta: " + saldoString + " PLN");
         mnKonto.add(mntmSaldoKonta);
         
         JMenuItem mntmDoladujKonto = new JMenuItem("Doładuj konto");
@@ -103,7 +103,7 @@ public class KlientGUI extends WspolneGUI {
 	            	
 	            	double saldoKonta = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(Metody.getLoginAktywnejOsoby())).getSaldoKonta();
 	                String saldoString = String.valueOf(Math.round(saldoKonta * 100) / 100.0);
-	                mntmSaldoKonta.setText("Saldo konta: " + saldoString);
+	                mntmSaldoKonta.setText("Saldo konta: " + saldoString + " PLN");
 	            	
 	            } catch(NumberFormatException e) {
 	            	JOptionPane.showMessageDialog(frame1, "Kwota musi być liczbą!", "Błąd formatu", JOptionPane.ERROR_MESSAGE);
