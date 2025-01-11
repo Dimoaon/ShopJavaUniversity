@@ -27,9 +27,9 @@ public abstract class WspolneGUI implements GUIstrategia {
 		frame1.setSize(900, 700);
 
 		try {
-		    frame1.setIconImage(ImageIO.read(new File("Grafika/dolarZielony.png")));
+			frame1.setIconImage(ImageIO.read(new File("Grafika/dolarZielony.png")));
 		} catch (Exception e) {
-		    System.err.println("Błąd podczas wczytywania ikony: " + e.getMessage());
+			System.err.println("Błąd podczas wczytywania ikony: " + e.getMessage());
 		}
 
 		// Główne menu
@@ -108,7 +108,7 @@ public abstract class WspolneGUI implements GUIstrategia {
 
 					// Usuwamy możliwość zapisać dane przez zamknięcie okna
 					for (WindowListener listener : frame1.getWindowListeners())
-		                frame1.removeWindowListener(listener);
+						frame1.removeWindowListener(listener);
 
 					// Zostawiamy tylko główny frame
 					closeAllExceptMain(frame1);

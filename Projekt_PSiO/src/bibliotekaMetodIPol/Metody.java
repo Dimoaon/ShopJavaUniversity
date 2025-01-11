@@ -87,5 +87,13 @@ public class Metody {
 		Klient klient = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(login));
 		klient.setSaldoKonta(klient.getSaldoKonta() + zmiana);
 	}
+	
+	public static boolean czyWystarczyPieniedzy(String login, double ileTrzebaMiec) {
+		Klient klient = Metody.getListaKlientow().get(MenuLogowanie.szukajIDLoginKlienta(login));
+		if (klient.getSaldoKonta() >= ileTrzebaMiec)
+			return true;
+		
+		return false;
+	}
 
 }

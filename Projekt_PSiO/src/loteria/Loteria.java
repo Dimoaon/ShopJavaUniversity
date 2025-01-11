@@ -28,7 +28,7 @@ public class Loteria implements Serializable {
 		Random rand = new Random();
 		int liczba = rand.nextInt(maxLiczba - minLiczba + 1) + minLiczba;
 
-		if (liczba >= minLiczba && liczba <= maxLiczba) {
+		if (liczbaUzytkownika >= minLiczba && liczbaUzytkownika <= maxLiczba) {
 			// Opłata za loterie
 			Metody.updateSaldoKonta(-wartosc, login);
 			if (liczbaUzytkownika == liczba) {

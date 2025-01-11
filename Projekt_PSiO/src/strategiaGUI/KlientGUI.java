@@ -134,13 +134,11 @@ public class KlientGUI extends WspolneGUI {
 		if (result == JOptionPane.YES_OPTION) {
 
 			// Sprawdzamy, czy wystarczy pieniędzy
-			double saldoKonta = Metody.getListaKlientow()
-					.get(MenuLogowanie.szukajIDLoginKlienta(Metody.getLoginAktywnejOsoby())).getSaldoKonta();
-
-			if (saldoKonta < 50.0) {
+			if (!Metody.czyWystarczyPieniedzy(Metody.getLoginAktywnejOsoby(), Metody.getLoteria().getWartosc())) {
 				JOptionPane.showMessageDialog(frame1, "Brakuje pieniędzy dla gry! Doładuj konto i wróć.", "Loteria",
 						JOptionPane.ERROR_MESSAGE);
 				return false;
+
 			} else
 				return true;
 		}
@@ -163,7 +161,7 @@ public class KlientGUI extends WspolneGUI {
 
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(frame1,
-						"Błędny format liczby! Pieniądze zostały zwrócone. Spróbuj jeszcze.", "Błąd formatu",
+						"Błędny format liczby! Pieniądze zostały zwrócone. Spróbuj jeszcze raz.", "Błąd formatu",
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
