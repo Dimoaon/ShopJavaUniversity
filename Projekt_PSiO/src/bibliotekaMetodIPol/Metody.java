@@ -15,7 +15,7 @@ public class Metody {
 	
 	private static Loteria loteria;
 
-	private static ArrayList<OsobaZarzadzajaca> listaOsobZarzadzajacych = new ArrayList<>();
+	private static ArrayList<Pracownik> listaOsobZarzadzajacych = new ArrayList<>();
 	private static ArrayList<Klient> listaKlientow = new ArrayList<>();
 	private static ArrayList<Produkty> listaProduktow = new ArrayList<>();
 
@@ -45,11 +45,11 @@ public class Metody {
 		Metody.loteria = loteria;
 	}
 
-	public static ArrayList<OsobaZarzadzajaca> getListaOsobZarzadzajacych() {
+	public static ArrayList<Pracownik> getListaOsobZarzadzajacych() {
 		return listaOsobZarzadzajacych;
 	}
 
-	public static void setListaOsobZarzadzajacych(ArrayList<OsobaZarzadzajaca> listaOsobZarzadzajacych) {
+	public static void setListaOsobZarzadzajacych(ArrayList<Pracownik> listaOsobZarzadzajacych) {
 		Metody.listaOsobZarzadzajacych = listaOsobZarzadzajacych;
 	}
 

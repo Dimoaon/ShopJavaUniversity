@@ -75,8 +75,8 @@ public class ZapisywanieObiektow {
 	private static void zapiszPracownikow() {
 
 		try (ObjectOutputStream writeob = new ObjectOutputStream(new FileOutputStream("./BazaDanych/Pracownicy.ser"))) {
-			for (OsobaZarzadzajaca osobaZarzadzajaca : Metody.getListaOsobZarzadzajacych()) {
-				if (osobaZarzadzajaca instanceof Pracownik)
+			for (Pracownik osobaZarzadzajaca : Metody.getListaOsobZarzadzajacych()) {
+				if ((osobaZarzadzajaca instanceof Pracownik) && !(osobaZarzadzajaca instanceof Kierownik))
 					writeob.writeObject(osobaZarzadzajaca);
 			}
 			System.out.println("Lista pracowników zapisana pomyślnie.");
@@ -90,7 +90,7 @@ public class ZapisywanieObiektow {
 	private static void zapiszKierownikow() {
 
 		try (ObjectOutputStream writeob = new ObjectOutputStream(new FileOutputStream("./BazaDanych/Kierownicy.ser"))) {
-			for (OsobaZarzadzajaca osobaZarzadzajaca : Metody.getListaOsobZarzadzajacych()) {
+			for (Pracownik osobaZarzadzajaca : Metody.getListaOsobZarzadzajacych()) {
 				if (osobaZarzadzajaca instanceof Kierownik)
 					writeob.writeObject(osobaZarzadzajaca);
 			}
