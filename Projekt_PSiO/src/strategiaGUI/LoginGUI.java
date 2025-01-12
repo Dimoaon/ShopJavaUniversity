@@ -43,7 +43,7 @@ public class LoginGUI implements GUIstrategia {
 		frame1.setSize(390, 200);
 
 		panel1 = new JPanel();
-		panel1.setBorder(new EmptyBorder(10, 10, 0, 10));
+		panel1.setBorder(new EmptyBorder(0, 10, 0, 10));
 		frame1.getContentPane().add(BorderLayout.CENTER, panel1);
 		panel1.setLayout(new GridLayout(4, 1));
 

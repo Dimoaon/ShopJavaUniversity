@@ -7,7 +7,7 @@ import javax.swing.border.EmptyBorder;
 import adres.Adres;
 import bibliotekaMetodIPol.Metody;
 import bibliotekaMetodIPol.ZapisywanieObiektow;
-import osoba.Klient;
+import osoba.*;
 import promocjaStrategia.PromocjaPodstawowa;
 import zakupy.Zakupy;
 import java.awt.*;
@@ -15,22 +15,30 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Rejestracja implements GUIstrategia {
+	
+	private JFrame frame1;
 
 	public Rejestracja(JFrame frame1) {
-		setupFrame(frame1);
+		this.frame1 = frame1;
+		
+		setupFrame();
+		
+		frame1.getContentPane().removeAll();
 		GUIcreate(frame1);
+		frame1.revalidate();
+		frame1.repaint();
 	}
 
-	private void setupFrame(JFrame frame1) {
+	private void setupFrame() {
 		frame1.setTitle("Rejestracja");
 		frame1.setSize(400, 250);
 		
-		setFrameIcon(frame1, "Grafika/key.png");
+		setFrameIcon("Grafika/key.png");
 	}
 
-	private void setFrameIcon(JFrame frame, String iconPath) {
+	private void setFrameIcon(String iconPath) {
 		try {
-			frame.setIconImage(ImageIO.read(new File(iconPath)));
+			frame1.setIconImage(ImageIO.read(new File(iconPath)));
 		} catch (Exception e) {
 			System.err.println("Błąd podczas wczytywania ikony: " + e.getMessage());
 		}
@@ -63,21 +71,18 @@ public class Rejestracja implements GUIstrategia {
 		panel.add(wiekField);
 
 		JButton registerButton = new JButton("Zarejestruj");
-		registerButton.addActionListener(e -> handleRegistration(frame1, emailField, hasloField, loginField,
+		registerButton.addActionListener(e -> handleRegistration(emailField, hasloField, loginField,
 				nazwiskoField, imieField, wiekField));
 		panel.add(registerButton);
 
 		JButton backButton = new JButton("Powrót do logowania");
-		backButton.addActionListener(e -> returnToLogin(frame1));
+		backButton.addActionListener(e -> returnToLogin());
 		panel.add(backButton);
 
-		frame1.getContentPane().removeAll();
 		frame1.getContentPane().add(panel);
-		frame1.revalidate();
-		frame1.repaint();
 	}
 
-	private void handleRegistration(JFrame frame1, JTextField emailField, JPasswordField hasloField,
+	private void handleRegistration(JTextField emailField, JPasswordField hasloField,
 			JTextField loginField, JTextField nazwiskoField, JTextField imieField, JTextField wiekField) {
 		String email = emailField.getText().trim();
 		String haslo = new String(hasloField.getPassword()).trim();
@@ -86,28 +91,34 @@ public class Rejestracja implements GUIstrategia {
 		String imie = imieField.getText().trim();
 		String wiek = wiekField.getText().trim();
 
-		isValidData(email, haslo, login, nazwisko, imie, wiek);
+		if (isValidData(email, haslo, login, nazwisko, imie, wiek)) {
+			Klient newClient = new Klient(email, haslo, login, nazwisko, imie, Integer.parseInt(wiek),
+					new Adres("", "", "", "", "", ""), 0, new PromocjaPodstawowa(), new ArrayList<>(),
+					new Zakupy());
+			Metody.getListaKlientow().add(newClient);
+			ZapisywanieObiektow.zapiszKlientow();
 
-		Klient newClient = new Klient(email, haslo, login, nazwisko, imie, Integer.parseInt(wiek),
-				new Adres("", "", "", null, null, null), 0, new PromocjaPodstawowa(), new ArrayList<>(), new Zakupy());
-		Metody.getListaKlientow().add(newClient);
-		ZapisywanieObiektow.zapiszKlientow();
+			JOptionPane.showMessageDialog(frame1, "Rejestracja zakończona sukcesem.", "Sukces",
+					JOptionPane.INFORMATION_MESSAGE);
+			
+			Metody.setLoginAktywnejOsoby(login);
+			Metody.setWybraneGUI(new KlientGUI(frame1));
+		}
 
-		JOptionPane.showMessageDialog(frame1, "Rejestracja zakończona sukcesem.", "Sukces",
-				JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 
 	private boolean isValidData(String email, String haslo, String login, String nazwisko, String imie,
 			String wiekStr) {
 		if (email.isEmpty() || haslo.isEmpty() || login.isEmpty() || nazwisko.isEmpty() || imie.isEmpty()
 				|| wiekStr.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Wszystkie pola muszą być wypełnione!", "Błąd",
+			JOptionPane.showMessageDialog(frame1, "Wszystkie pola muszą być wypełnione!", "Błąd",
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
 		if (!email.contains("@")) {
-			JOptionPane.showMessageDialog(null, "Brak @ w emailu", "Błąd", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(frame1, "Brak @ w emailu", "Błąd", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
@@ -122,16 +133,25 @@ public class Rejestracja implements GUIstrategia {
 			}
 		}
 
+		for (Pracownik pracownik : Metody.getListaOsobZarzadzajacych()) {
+			if (pracownik.getEmail().equals(email)) {
+				emailExists = true;
+			}
+			if (pracownik.getLogin().equals(login)) {
+				loginExists = true;
+			}
+		}
+		
 		if (emailExists && loginExists) {
-			JOptionPane.showMessageDialog(null, "Konto z podanym emailem i loginem już istnieje!", "Błąd",
+			JOptionPane.showMessageDialog(frame1, "Konto z podanym emailem i loginem już istnieje!", "Błąd",
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		} else if (emailExists) {
-			JOptionPane.showMessageDialog(null, "Konto z podanym emailem już istnieje!", "Błąd",
+			JOptionPane.showMessageDialog(frame1, "Konto z podanym emailem już istnieje!", "Błąd",
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		} else if (loginExists) {
-			JOptionPane.showMessageDialog(null, "Konto z podanym loginem już istnieje!", "Błąd",
+			JOptionPane.showMessageDialog(frame1, "Konto z podanym loginem już istnieje!", "Błąd",
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
@@ -158,14 +178,14 @@ public class Rejestracja implements GUIstrategia {
 		}
 
 		if (liczbaZnakow < 8 || liczbaMalychZnakow < 3 || liczbaDuzychZnakow < 3 || liczbaSpecjalnych < 3) {
-			JOptionPane.showMessageDialog(null,
+			JOptionPane.showMessageDialog(frame1,
 					"Hasło nie spełnia standardów bezpieczeństwa.\nPowinno mieć minimum: 8 znaków (w tym po 3 znaki małe i duże), 3 różne znaki specjalne",
 					"Błąd", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
 		if (!isNumeric(wiekStr)) {
-			JOptionPane.showMessageDialog(null, "Wiek musi być liczbą!", "Błąd", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(frame1, "Wiek musi być liczbą!", "Błąd", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
@@ -181,7 +201,7 @@ public class Rejestracja implements GUIstrategia {
 		}
 	}
 
-	private void returnToLogin(JFrame frame1) {
+	private void returnToLogin() {
 		Metody.setWybraneGUI(new LoginGUI(frame1));
 	}
 
