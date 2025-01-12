@@ -45,7 +45,7 @@ public class LoginGUI implements GUIstrategia {
 		panel1 = new JPanel();
 		panel1.setBorder(new EmptyBorder(10, 10, 10, 10));
 		frame1.getContentPane().add(BorderLayout.CENTER, panel1);
-		panel1.setLayout(new GridLayout(3, 2));
+		panel1.setLayout(new GridLayout(4, 3));
 
 		WczytywanieObiektow.wczytajSposobLogowania();
 		lbLoginEmail = new JLabel();
@@ -70,6 +70,10 @@ public class LoginGUI implements GUIstrategia {
 
 		btnSposobLog = new JButton("Inny sposob logowania");
 		panel1.add(btnSposobLog);
+		
+		btnRejestracja = new JButton("Rejestracja");
+		panel1.add(btnRejestracja);
+
 
 		// Pokazywanie hasła po przesunięciu na niego wskażnika myszy
 		haslo.addMouseListener(new MouseAdapter() {
