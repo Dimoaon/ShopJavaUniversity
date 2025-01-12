@@ -59,7 +59,7 @@ public class ZapisywanieObiektow {
 
 	}
 
-	private static void zapiszKlientow() {
+	public static void zapiszKlientow() {
 
 		try (ObjectOutputStream writeob = new ObjectOutputStream(new FileOutputStream("./BazaDanych/Klienci.ser"))) {
 			for (Klient klient : Metody.getListaKlientow()) {
