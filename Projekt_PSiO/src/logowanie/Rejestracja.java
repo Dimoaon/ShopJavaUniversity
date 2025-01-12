@@ -186,7 +186,7 @@ public class Rejestracja {
     			} else if (loginExists) {
     				JOptionPane.showMessageDialog(frame1, "Konto z podanym loginem już istnieje!", "Błąd", JOptionPane.ERROR_MESSAGE);
     			} else {
-    				Klient nowyKlient = new Klient(email, haslo, login, nazwisko, imie, wiek, null, 0, null, null);
+    				Klient nowyKlient = new Klient(email, haslo, login, nazwisko, imie, wiek, null, 0, null, null, null);
     				Metody.getListaKlientow().add(nowyKlient);
     				ZapisywanieObiektow.zapiszKlientow();
     				JOptionPane.showMessageDialog(frame1, "Rejestracja zakończona sukcesem!", "Informacja", JOptionPane.INFORMATION_MESSAGE);
