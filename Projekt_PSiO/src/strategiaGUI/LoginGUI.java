@@ -16,7 +16,7 @@ public class LoginGUI implements GUIstrategia {
 	private JPasswordField haslo;
 	private JTextField txfLoginEmail;
 	private JLabel lbLoginEmail, lbHaslo;
-	private JButton btnZaloguj, btnSposobLog;
+	private JButton btnZaloguj, btnSposobLog, btnRejestracja;
 	// ____________________________________________________
 
 	// Konstruktor
@@ -110,6 +110,13 @@ public class LoginGUI implements GUIstrategia {
 			public void actionPerformed(ActionEvent e) {
 				MenuLogowanie.getPreferowaneLogowanie().logowanie(txfLoginEmail.getText(),
 						new String(haslo.getPassword()), frame1);
+			}
+		});
+
+		btnRejestracja.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Rejestracja.uruchomRejetracje(frame1);
 			}
 		});
 
