@@ -3,7 +3,7 @@ package strategiaGUI;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
+import logowanie.MenuLogowanie;
 import adres.Adres;
 import bibliotekaMetodIPol.Metody;
 import bibliotekaMetodIPol.ZapisywanieObiektow;
@@ -15,14 +15,14 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Rejestracja implements GUIstrategia {
-	
+
 	private JFrame frame1;
 
 	public Rejestracja(JFrame frame1) {
 		this.frame1 = frame1;
-		
+
 		setupFrame();
-		
+
 		frame1.getContentPane().removeAll();
 		GUIcreate(frame1);
 		frame1.revalidate();
@@ -31,8 +31,8 @@ public class Rejestracja implements GUIstrategia {
 
 	private void setupFrame() {
 		frame1.setTitle("Rejestracja");
-		frame1.setSize(400, 250);
-		
+		frame1.setSize(350, 400);
+
 		setFrameIcon("Grafika/key.png");
 	}
 
@@ -46,10 +46,10 @@ public class Rejestracja implements GUIstrategia {
 
 	@Override
 	public void GUIcreate(JFrame frame1) {
-		JPanel panel = new JPanel(new GridLayout(7, 2));
+		JPanel panel = new JPanel(new GridLayout(12, 1));
 
-		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-		
+		panel.setBorder(new EmptyBorder(0, 10, 0, 10));
+
 		JTextField emailField = new JTextField();
 		JPasswordField hasloField = new JPasswordField();
 		JTextField loginField = new JTextField();
@@ -70,20 +70,24 @@ public class Rejestracja implements GUIstrategia {
 		panel.add(new JLabel("Wiek:"));
 		panel.add(wiekField);
 
+		JPanel panel1 = new JPanel();
+		panel1.setBorder(new EmptyBorder(10, 10, 10, 10));
+
 		JButton registerButton = new JButton("Zarejestruj");
-		registerButton.addActionListener(e -> handleRegistration(emailField, hasloField, loginField,
-				nazwiskoField, imieField, wiekField));
-		panel.add(registerButton);
+		registerButton.addActionListener(
+				e -> handleRegistration(emailField, hasloField, loginField, nazwiskoField, imieField, wiekField));
+		panel1.add(registerButton);
 
 		JButton backButton = new JButton("Powrót do logowania");
 		backButton.addActionListener(e -> returnToLogin());
-		panel.add(backButton);
+		panel1.add(backButton);
 
-		frame1.getContentPane().add(panel);
+		frame1.getContentPane().add(BorderLayout.CENTER, panel);
+		frame1.getContentPane().add(BorderLayout.SOUTH, panel1);
 	}
 
-	private void handleRegistration(JTextField emailField, JPasswordField hasloField,
-			JTextField loginField, JTextField nazwiskoField, JTextField imieField, JTextField wiekField) {
+	private void handleRegistration(JTextField emailField, JPasswordField hasloField, JTextField loginField,
+			JTextField nazwiskoField, JTextField imieField, JTextField wiekField) {
 		String email = emailField.getText().trim();
 		String haslo = new String(hasloField.getPassword()).trim();
 		String login = loginField.getText().trim();
@@ -93,19 +97,17 @@ public class Rejestracja implements GUIstrategia {
 
 		if (isValidData(email, haslo, login, nazwisko, imie, wiek)) {
 			Klient newClient = new Klient(email, haslo, login, nazwisko, imie, Integer.parseInt(wiek),
-					new Adres("", "", "", "", "", ""), 0, new PromocjaPodstawowa(), new ArrayList<>(),
-					new Zakupy());
+					new Adres("", "", "", "", "", ""), 0, new PromocjaPodstawowa(), new ArrayList<>(), new Zakupy());
 			Metody.getListaKlientow().add(newClient);
 			ZapisywanieObiektow.zapiszKlientow();
 
 			JOptionPane.showMessageDialog(frame1, "Rejestracja zakończona sukcesem.", "Sukces",
 					JOptionPane.INFORMATION_MESSAGE);
-			
+
 			Metody.setLoginAktywnejOsoby(login);
 			Metody.setWybraneGUI(new KlientGUI(frame1));
 		}
 
-		
 	}
 
 	private boolean isValidData(String email, String haslo, String login, String nazwisko, String imie,
@@ -122,26 +124,15 @@ public class Rejestracja implements GUIstrategia {
 			return false;
 		}
 
-		boolean emailExists = false;
-		boolean loginExists = false;
-		for (Klient klient : Metody.getListaKlientow()) {
-			if (klient.getEmail().equals(email)) {
-				emailExists = true;
-			}
-			if (klient.getLogin().equals(login)) {
-				loginExists = true;
-			}
-		}
+		boolean emailExists = true;
+		boolean loginExists = true;
 
-		for (Pracownik pracownik : Metody.getListaOsobZarzadzajacych()) {
-			if (pracownik.getEmail().equals(email)) {
-				emailExists = true;
-			}
-			if (pracownik.getLogin().equals(login)) {
-				loginExists = true;
-			}
-		}
-		
+		if (MenuLogowanie.szukajIDEmailKlienta(email) == -1 && MenuLogowanie.szukajIDEmailZarzadzajacych(email) == -1)
+			emailExists = false;
+
+		if (MenuLogowanie.szukajIDLoginKlienta(login) == -1 && MenuLogowanie.szukajIDLoginZarzadzajacych(login) == -1)
+			loginExists = false;
+
 		if (emailExists && loginExists) {
 			JOptionPane.showMessageDialog(frame1, "Konto z podanym emailem i loginem już istnieje!", "Błąd",
 					JOptionPane.ERROR_MESSAGE);
@@ -205,5 +196,4 @@ public class Rejestracja implements GUIstrategia {
 		Metody.setWybraneGUI(new LoginGUI(frame1));
 	}
 
-	
 }
