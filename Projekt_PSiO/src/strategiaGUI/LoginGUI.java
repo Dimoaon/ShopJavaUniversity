@@ -120,7 +120,7 @@ public class LoginGUI implements GUIstrategia {
 		btnRejestracja.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Rejestracja.uruchomRejetracje(frame1);
+				new Rejestracja(frame1);
 			}
 		});
 
