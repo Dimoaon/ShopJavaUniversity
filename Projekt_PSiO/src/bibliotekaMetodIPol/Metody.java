@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import logowanie.MenuLogowanie;
 import loteria.*;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class Metody {
 
 	// Pola_statyczne______________________________________________________________________________
