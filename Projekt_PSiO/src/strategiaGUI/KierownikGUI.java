@@ -91,7 +91,7 @@ public class KierownikGUI extends PracownikGUI {
 
 		toolIcon(clientFrame);
 
-		String[] columnNames = { "Login", "Imię", "Nazwisko", "Email", "Saldo Konta" };
+		String[] columnNames = { "Imię", "Nazwisko", "Login", "Email", "Hasło", "Saldo Konta" };
 
 		klientTableModel = new DefaultTableModel(columnNames, 0) {
 			private static final long serialVersionUID = 1L;
@@ -201,7 +201,7 @@ public class KierownikGUI extends PracownikGUI {
 		searchPanel.add(searchField);
 		searchPanel.add(searchButton);
 
-		String[] columnNames = { "Login", "Imię", "Nazwisko", "Email", "Saldo Konta" };
+		String[] columnNames = { "Imię", "Nazwisko", "Login", "Email", "Hasło", "Saldo Konta" };
 
 		DefaultTableModel searchTableModel = new DefaultTableModel(columnNames, 0) {
 			private static final long serialVersionUID = 1L;
@@ -232,8 +232,8 @@ public class KierownikGUI extends PracownikGUI {
 		tableModel.setRowCount(0);
 		for (Klient klient : listaKlientow) {
 			if (klient.getEmail().contains(criteria) || klient.getNazwisko().contains(criteria)) {
-				tableModel.addRow(new Object[] { klient.getLogin(), klient.getImie(), klient.getNazwisko(),
-						klient.getEmail(), klient.getSaldoKonta() });
+				tableModel.addRow(new Object[] { klient.getImie(), klient.getNazwisko(), klient.getLogin(),
+						klient.getEmail(), klient.getHaslo(), klient.getSaldoKonta() });
 			}
 		}
 	}
@@ -245,7 +245,7 @@ public class KierownikGUI extends PracownikGUI {
 
 		toolIcon(employeeFrame);
 
-		String[] columnNames = { "Login", "Imię", "Nazwisko", "Email", "Saldo Konta" };
+		String[] columnNames = { "Imię", "Nazwisko", "Login", "Email", "Hasło", "Saldo Konta" };
 		pracownikTableModel = new DefaultTableModel(columnNames, 0) {
 			private static final long serialVersionUID = 1L;
 
@@ -361,7 +361,7 @@ public class KierownikGUI extends PracownikGUI {
 		searchPanel.add(searchField);
 		searchPanel.add(searchButton);
 
-		String[] columnNames = { "Login", "Imię", "Nazwisko", "Email", "Saldo Konta" };
+		String[] columnNames = { "Imię", "Nazwisko", "Login","Email", "Hasło", "Saldo Konta" };
 		DefaultTableModel searchTableModel = new DefaultTableModel(columnNames, 0) {
 			private static final long serialVersionUID = 1L;
 
@@ -392,8 +392,9 @@ public class KierownikGUI extends PracownikGUI {
 		tableModel.setRowCount(0);
 		for (Pracownik pracownik : listaPracownikow) {
 			if (pracownik.getEmail().contains(criteria) || pracownik.getNazwisko().contains(criteria)) {
-				tableModel.addRow(new Object[] { pracownik.getLogin(), pracownik.getImie(), pracownik.getNazwisko(),
-						pracownik.getEmail(), pracownik.getSaldoKonta() });
+				tableModel.addRow(new Object[] { pracownik.getImie(), pracownik.getNazwisko(),
+						pracownik.getLogin(),
+						pracownik.getEmail(), pracownik.getHaslo(), pracownik.getSaldoKonta() });
 			}
 		}
 	}
@@ -401,8 +402,8 @@ public class KierownikGUI extends PracownikGUI {
 	private void refreshClientTable() {
 		klientTableModel.setRowCount(0);
 		for (Klient klient : listaKlientow) {
-			klientTableModel.addRow(new Object[] { klient.getLogin(), klient.getImie(), klient.getNazwisko(),
-					klient.getEmail(), klient.getSaldoKonta() });
+			klientTableModel.addRow(new Object[] { klient.getImie(), klient.getNazwisko(), klient.getLogin(),
+					klient.getEmail(), klient.getHaslo(), klient.getSaldoKonta() });
 		}
 	}
 
@@ -411,8 +412,9 @@ public class KierownikGUI extends PracownikGUI {
 		for (Pracownik osoba : listaPracownikow) {
 			if (osoba instanceof Pracownik) {
 				Pracownik pracownik = (Pracownik) osoba;
-				pracownikTableModel.addRow(new Object[] { pracownik.getLogin(), pracownik.getImie(),
-						pracownik.getNazwisko(), pracownik.getEmail(), pracownik.getSaldoKonta() });
+				pracownikTableModel
+						.addRow(new Object[] { pracownik.getImie(), pracownik.getNazwisko(), pracownik.getLogin(),
+								pracownik.getEmail(), pracownik.getHaslo(), pracownik.getSaldoKonta() });
 			}
 		}
 	}
