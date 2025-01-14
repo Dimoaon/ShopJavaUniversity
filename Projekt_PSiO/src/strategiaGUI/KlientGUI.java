@@ -28,7 +28,8 @@ public class KlientGUI extends WspolneGUI {
 	private ArrayList<Produkty> productsGaming = new ArrayList<Produkty>();
 	private ArrayList<Produkty> productsFotografia = new ArrayList<Produkty>();
 	private ArrayList<Produkty> productsMieszane = new ArrayList<Produkty>();
-	private ArrayList<Produkty> koszyk = new ArrayList<>();
+	private Klient klient;
+	private ArrayList<Produkty> koszyk = klient.getKoszyk().getListaProduktow();
 
 	// Konstruktor
 	public KlientGUI(JFrame frame1) {
@@ -77,10 +78,6 @@ public class KlientGUI extends WspolneGUI {
 		JMenuItem mntmPokazKoszyk = new JMenuItem("Pokaż koszyk");
         mnKoszyk.add(mntmPokazKoszyk);
         mntmPokazKoszyk.addActionListener(e -> pokazKoszyk(frame1));
-
-        JMenuItem mntmKupKoszyk = new JMenuItem("Kup wszystko");
-        mnKoszyk.add(mntmKupKoszyk);
-        mntmKupKoszyk.addActionListener(e -> kupKoszyk(frame1));
 
 		JMenu mnKonto = new JMenu("Konto");
 		menuBar.add(mnKonto);
@@ -256,26 +253,19 @@ public class KlientGUI extends WspolneGUI {
             for (Produkty produkt : koszyk) {
                 zawartosc.append(produkt.getNazwaProduktu()).append("\n");
             }
+
+			JButton kupButton = new JButton("Kup");
+
+			kupButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					klient.kup(frame1);
+					koszyk.clear();
+				}
+			});
+
             JOptionPane.showMessageDialog(frame1, zawartosc.toString(), "Koszyk", JOptionPane.INFORMATION_MESSAGE);
         }
-    }
-
-	private void kupKoszyk(JFrame frame1) {
-        if (koszyk.isEmpty()) {
-            JOptionPane.showMessageDialog(frame1, "Koszyk jest pusty.", "Koszyk", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
-        double suma = koszyk.stream().mapToDouble(Produkty::getCenaProduktu).sum();
-        if (!Metody.czyWystarczyPieniedzy(Metody.getLoginAktywnejOsoby(), suma)) {
-            JOptionPane.showMessageDialog(frame1, "Brakuje środków na koncie.", "Błąd", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        Metody.updateSaldoKonta(-suma, Metody.getLoginAktywnejOsoby());
-        refreshSaldoKonta(lbSaldoKonta);
-        koszyk.clear();
-        JOptionPane.showMessageDialog(frame1, "Zakupiono produkty za: " + suma + " PLN.", "Sukces", JOptionPane.INFORMATION_MESSAGE);
     }
 
 	private void toggleContent() {
