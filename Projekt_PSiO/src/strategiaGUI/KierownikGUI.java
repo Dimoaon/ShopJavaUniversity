@@ -165,8 +165,8 @@ public class KierownikGUI extends PracownikGUI {
 			}
 
 		} else {
-			JOptionPane.showMessageDialog(clientFrame, "Nie wybrano konto, które chcesz usunąć!",
-					"Informacja usunięcia", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(clientFrame, "Nie wybrano konto do usunięcia!",
+					"Informacja usunięcia", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
@@ -195,8 +195,8 @@ public class KierownikGUI extends PracownikGUI {
 				refreshClientTable();
 			}
 		} else {
-			JOptionPane.showMessageDialog(clientFrame, "Nie wybrano konto, które chcesz edytować!",
-					"Informacja usunięcia", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(clientFrame, "Nie wybrano konto dla edytowania!",
+					"Informacja edytowania", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
@@ -336,7 +336,7 @@ public class KierownikGUI extends PracownikGUI {
 
 				if (wybranyPracownik.getLogin().equals(aktywnyPracownik.getLogin()))
 					JOptionPane.showMessageDialog(employeeFrame, "Nie można usunąć swojego konta!",
-							"Informacja usunięcia", JOptionPane.ERROR_MESSAGE);
+							"Błąd usunięcia", JOptionPane.ERROR_MESSAGE);
 				else {
 					listaPracownikow.remove(selectedRow);
 					refreshEmployeeTable();
@@ -345,8 +345,8 @@ public class KierownikGUI extends PracownikGUI {
 			}
 
 		} else {
-			JOptionPane.showMessageDialog(employeeFrame, "Nie wybrano konto, które chcesz usunąć!",
-					"Informacja usunięcia", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(employeeFrame, "Nie wybrano konto do usunięcia!",
+					"Informacja usunięcia", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
@@ -379,8 +379,8 @@ public class KierownikGUI extends PracownikGUI {
 				refreshEmployeeTable();
 			}
 		} else {
-			JOptionPane.showMessageDialog(employeeFrame, "Nie wybrano konto, które chcesz edytować!",
-					"Informacja usunięcia", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(employeeFrame, "Nie wybrano konto dla edytowania!",
+					"Informacja edytowania", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
