@@ -210,7 +210,7 @@ public class KierownikGUI extends PracownikGUI {
 		JTextField searchField = new JTextField(20);
 		JButton searchButton = new JButton("Szukaj");
 
-		searchPanel.add(new JLabel("Wprowadź kryteria:"));
+		searchPanel.add(new JLabel("Wprowadź kryteria (email, login, nazwisko):"));
 		searchPanel.add(searchField);
 		searchPanel.add(searchButton);
 
@@ -244,7 +244,8 @@ public class KierownikGUI extends PracownikGUI {
 	private void searchClients(String criteria, DefaultTableModel tableModel) {
 		tableModel.setRowCount(0);
 		for (Klient klient : listaKlientow) {
-			if (klient.getEmail().contains(criteria) || klient.getNazwisko().contains(criteria)) {
+			if (klient.getEmail().contains(criteria) || klient.getNazwisko().contains(criteria)
+					|| klient.getLogin().contains(criteria)) {
 				tableModel.addRow(new Object[] { klient.getImie(), klient.getNazwisko(), klient.getLogin(),
 						klient.getEmail(), klient.getHaslo(), klient.getSaldoKonta() });
 			}
@@ -393,7 +394,7 @@ public class KierownikGUI extends PracownikGUI {
 		JTextField searchField = new JTextField(20);
 		JButton searchButton = new JButton("Szukaj");
 
-		searchPanel.add(new JLabel("Wprowadź kryteria:"));
+		searchPanel.add(new JLabel("Wprowadź kryteria (email, login, nazwisko):"));
 		searchPanel.add(searchField);
 		searchPanel.add(searchButton);
 
@@ -427,7 +428,8 @@ public class KierownikGUI extends PracownikGUI {
 	private void searchEmployees(String criteria, DefaultTableModel tableModel) {
 		tableModel.setRowCount(0);
 		for (Pracownik pracownik : listaPracownikow) {
-			if (pracownik.getEmail().contains(criteria) || pracownik.getNazwisko().contains(criteria)) {
+			if (pracownik.getEmail().contains(criteria) || pracownik.getNazwisko().contains(criteria)
+					|| pracownik.getLogin().contains(criteria)) {
 				tableModel.addRow(new Object[] { pracownik.getImie(), pracownik.getNazwisko(), pracownik.getLogin(),
 						pracownik.getEmail(), pracownik.getHaslo(), pracownik.getSaldoKonta() });
 			}
