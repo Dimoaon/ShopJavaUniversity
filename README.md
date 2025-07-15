@@ -1,2 +1,1 @@
-Projekt PSiO
-Temat: zarządzanie online sklepem
+Java project (online market) for University
